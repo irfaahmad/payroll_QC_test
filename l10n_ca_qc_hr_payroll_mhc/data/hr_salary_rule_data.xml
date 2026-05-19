@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo noupdate="0">
+    <!-- ======================== RETROACTIVE PAY (sequence 2) ======================== -->
+    <record id="salary_rule_qc_retro" model="hr.salary.rule">
+        <field name="name">Retroactive Pay</field>
+        <field name="code">RETRO_QC</field>
+        <field name="sequence">2</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.get('RETRO_QC') and inputs['RETRO_QC'].amount &gt; 0</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+result = inputs['RETRO_QC'].amount if inputs.get('RETRO_QC') else 0
+        </field>
+    </record>
+
+    <!-- ======================== OVERTIME PAY ======================== -->
+    <record id="salary_rule_qc_ot" model="hr.salary.rule">
+        <field name="name">Overtime Pay</field>
+        <field name="code">OT</field>
+        <field name="sequence">3</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+ot_from_worked_days = sum(line.amount for line in payslip.worked_days_line_ids if line.code == 'OVERTIME')
+ot_from_input = inputs['OT'].amount if inputs.get('OT') and inputs['OT'].amount &gt; 0 else 0
+result = ot_from_worked_days + ot_from_input
+        </field>
+    </record>
+
+    <!-- ======================== TERMINATION PAY (sequence 2) ======================== -->
+    <record id="salary_rule_qc_term_pay" model="hr.salary.rule">
+        <field name="name">Termination Pay</field>
+        <field name="code">TERM_PAY_QC</field>
+        <field name="sequence">2</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.get('TERM_PAY_QC') and inputs['TERM_PAY_QC'].amount &gt; 0</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+result = inputs['TERM_PAY_QC'].amount if inputs.get('TERM_PAY_QC') else 0
+        </field>
+    </record>
+
+    <!-- ======================== SEVERANCE PAY (sequence 2) ======================== -->
+    <record id="salary_rule_qc_severance" model="hr.salary.rule">
+        <field name="name">Severance Pay</field>
+        <field name="code">SEVERANCE_QC</field>
+        <field name="sequence">2</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.get('SEVERANCE_QC') and inputs['SEVERANCE_QC'].amount &gt; 0</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+result = inputs['SEVERANCE_QC'].amount if inputs.get('SEVERANCE_QC') else 0
+        </field>
+    </record>
+
+    <!-- ======================== Sick Time Off ======================== -->
+    <record id="salary_rule_qc_sto" model="hr.salary.rule">
+        <field name="name">Sick Time Off</field>
+        <field name="code">STO</field>
+        <field name="sequence">2</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = worked_days.get('LEAVE110')</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = worked_days.get('LEAVE110').amount if worked_days.get('LEAVE110') else 0</field>
+    </record>
+
+    <!-- ======================== Paid Time Off ======================== -->
+    <record id="salary_rule_qc_pto" model="hr.salary.rule">
+        <field name="name">Paid Time Off</field>
+        <field name="code">PTO</field>
+        <field name="sequence">2</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = worked_days.get('LEAVE120')</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = worked_days.get('LEAVE120').amount if worked_days.get('LEAVE120') else 0</field>
+    </record>
+
+    <!-- ======================== Compensatory Time Off ======================== -->
+    <record id="salary_rule_qc_cto" model="hr.salary.rule">
+        <field name="name">Compensatory Time Off</field>
+        <field name="code">CTO</field>
+        <field name="sequence">2</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = worked_days.get('LEAVE105')</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = worked_days.get('LEAVE105').amount if worked_days.get('LEAVE105') else 0</field>
+    </record>
+
+    <!-- ======================== STATUTORY HOLIDAY PAY (sequence 3) ======================== -->
+    <record id="salary_rule_qc_stat_hol" model="hr.salary.rule">
+        <field name="name">Statutory Holiday Pay</field>
+        <field name="code">STAT_HOL_QC</field>
+        <field name="sequence">3</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.get('STAT_HOL_QC') and inputs['STAT_HOL_QC'].amount &gt; 0</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+result = inputs['STAT_HOL_QC'].amount if inputs.get('STAT_HOL_QC') else 0
+        </field>
+    </record>
+
+    <!-- ======================== TAXABLE BENEFITS (sequence 4) ======================== -->
+    <record id="salary_rule_qc_taxable_benefits" model="hr.salary.rule">
+        <field name="name">Taxable Benefits</field>
+        <field name="code">TAXABLE_BENEFITS_QC</field>
+        <field name="sequence">4</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = any(inputs.get(c) for c in ('TXBEN_CAR_QC', 'TXBEN_GRP_INS_QC', 'TXBEN_HOUSING_QC', 'TXBEN_OTHER_QC'))</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+result = (
+    (inputs['TXBEN_CAR_QC'].amount if inputs.get('TXBEN_CAR_QC') else 0)
+    + (inputs['TXBEN_GRP_INS_QC'].amount if inputs.get('TXBEN_GRP_INS_QC') else 0)
+    + (inputs['TXBEN_HOUSING_QC'].amount if inputs.get('TXBEN_HOUSING_QC') else 0)
+    + (inputs['TXBEN_OTHER_QC'].amount if inputs.get('TXBEN_OTHER_QC') else 0)
+)
+        </field>
+    </record>
+
+    <!-- ======================== VACATION PAYOUT (sequence 8) ======================== -->
+    <record id="salary_rule_qc_vac_payout" model="hr.salary.rule">
+        <field name="name">Vacation Pay Payout</field>
+        <field name="code">VAC_PAYOUT_QC</field>
+        <field name="sequence">8</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.get('VAC_PAYOUT_QC') and inputs['VAC_PAYOUT_QC'].amount &gt; 0</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+result = inputs['VAC_PAYOUT_QC'].amount if inputs.get('VAC_PAYOUT_QC') else 0
+        </field>
+    </record>
+
+    <!-- ======================== RPP DEDUCTION (sequence 6) ======================== -->
+    <record id="salary_rule_qc_rpp" model="hr.salary.rule">
+        <field name="name">RPP Contribution (Registered Pension Plan)</field>
+        <field name="code">RPP_QC</field>
+        <field name="sequence">6</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.get('RPP_QC') and inputs['RPP_QC'].amount &gt; 0</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+result = -(inputs['RPP_QC'].amount if inputs.get('RPP_QC') else 0)
+        </field>
+    </record>
+
+    <!-- ======================== BASIC SALARY ======================== -->
+    <record id="salary_rule_qc_basic" model="hr.salary.rule">
+        <field name="name">Basic Salary</field>
+        <field name="code">BASIC_QC</field>
+        <field name="sequence">1</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">result = payslip._get_paid_amount()</field>
+    </record>
+
+    <!-- ======================== GROSS SALARY (includes all earnings and taxable benefits) ======================== -->
+    <record id="salary_rule_qc_gross" model="hr.salary.rule">
+        <field name="name">Gross Salary</field>
+        <field name="code">GROSS_QC</field>
+        <field name="sequence">5</field>
+        <field name="category_id" ref="hr_payroll.GROSS"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = (
+    result_rules.get('BASIC_QC', {}).get('total', 0)
+    + result_rules.get('OT', {}).get('total', 0)
+    + result_rules.get('STO', {}).get('total', 0)  
+    + result_rules.get('PTO', {}).get('total', 0)
+    + result_rules.get('CTO', {}).get('total', 0)
+    + (inputs['BONUS_QC'].amount if inputs.get('BONUS_QC') else 0)
+    + (inputs['COMMISSION_QC'].amount if inputs.get('COMMISSION_QC') else 0)
+    + (inputs['VAC_PAYOUT_QC'].amount if inputs.get('VAC_PAYOUT_QC') else 0)
+    + result_rules.get('RETRO_QC', {}).get('total', 0)
+    + result_rules.get('TERM_PAY_QC', {}).get('total', 0)
+    + result_rules.get('SEVERANCE_QC', {}).get('total', 0)
+    + result_rules.get('STAT_HOL_QC', {}).get('total', 0)
+    + result_rules.get('TAXABLE_BENEFITS_QC', {}).get('total', 0)
+    + result_rules.get('STOCK_OPT_QC', {}).get('total', 0)
+)
+        </field>
+    </record>
+
+    <!-- ======================== RRSP DEDUCTION ======================== -->
+    <record id="salary_rule_qc_rrsp" model="hr.salary.rule">
+        <field name="name">RRSP Deduction</field>
+        <field name="code">RRSP_QC</field>
+        <field name="sequence">9</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.get('RRSP_QC') and inputs['RRSP_QC'].amount &gt; 0</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+result = -(inputs['RRSP_QC'].amount if inputs.get('RRSP_QC') else 0)
+        </field>
+    </record>
+
+    <!-- ======================== UNION DUES ======================== -->
+    <record id="salary_rule_qc_union" model="hr.salary.rule">
+        <field name="name">Union Dues</field>
+        <field name="code">UNION_QC</field>
+        <field name="sequence">9</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.get('UNION_QC') and inputs['UNION_QC'].amount &gt; 0</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+result = -(inputs['UNION_QC'].amount if inputs.get('UNION_QC') else 0)
+        </field>
+    </record>
+
+    <!-- ======================== QPP EMPLOYEE ======================== -->
+    <record id="salary_rule_qc_qpp_ee" model="hr.salary.rule">
+        <field name="name">QPP Employee Contribution</field>
+        <field name="code">QPP_EE</field>
+        <field name="sequence">10</field>
+        <field name="category_id" ref="hr_salary_rule_category_qc_qpp"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+gross_amount = result_rules.get('GROSS_QC', {}).get('total', 0)
+if version.l10n_ca_qc_qpp_exempt:
+    result = 0
+else:
+    pay_periods = version.l10n_ca_qc_pay_periods or 26
+    qpp_rate = payslip._rule_parameter('l10n_ca_qc_qpp_employee_rate')
+    qpp_exemption = payslip._rule_parameter('l10n_ca_qc_qpp_basic_exemption')
+    qpp_max = payslip._rule_parameter('l10n_ca_qc_qpp_max_contribution')
+    period_exemption = qpp_exemption / pay_periods
+    pensionable = max(gross_amount - period_exemption, 0)
+    period_contribution = pensionable * qpp_rate
+    # YTD accumulation — stop at annual maximum
+    prior_slips = payslip.env['hr.payslip'].search([
+        ('employee_id', '=', payslip.employee_id.id),
+        ('date_from', '>=', payslip.date_from.replace(month=1, day=1)),
+        ('date_to', '&lt;', payslip.date_from),
+        ('state', 'in', ['done', 'paid']),
+    ])
+    ytd = abs(sum(
+        l.total for l in prior_slips.mapped('line_ids').filtered(lambda l: l.code == 'QPP_EE')
+    ))
+    remaining = max(qpp_max - ytd, 0)
+    result = -min(period_contribution, remaining) if remaining &gt; 0 else 0
+        </field>
+    </record>
+
+    <!-- ======================== QPP2 EMPLOYEE ======================== -->
+    <record id="salary_rule_qc_qpp2_ee" model="hr.salary.rule">
+        <field name="name">QPP2 Employee Contribution</field>
+        <field name="code">QPP2_EE</field>
+        <field name="sequence">11</field>
+        <field name="category_id" ref="hr_salary_rule_category_qc_qpp"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+gross_amount = result_rules.get('GROSS_QC', {}).get('total', 0)
+if version.l10n_ca_qc_qpp_exempt:
+    result = 0
+else:
+    pay_periods = version.l10n_ca_qc_pay_periods or 26
+    qpp_ympe = payslip._rule_parameter('l10n_ca_qc_qpp_ympe')
+    qpp2_rate = payslip._rule_parameter('l10n_ca_qc_qpp2_rate')
+    qpp2_ceiling = payslip._rule_parameter('l10n_ca_qc_qpp2_ceiling')
+    qpp2_max = payslip._rule_parameter('l10n_ca_qc_qpp2_max_contribution')
+    period_ympe = qpp_ympe / pay_periods
+    period_ceiling = qpp2_ceiling / pay_periods
+    if gross_amount &gt; period_ympe:
+        qpp2_pensionable = min(gross_amount, period_ceiling) - period_ympe
+        period_contribution = qpp2_pensionable * qpp2_rate
+        # YTD accumulation
+        prior_slips = payslip.env['hr.payslip'].search([
+            ('employee_id', '=', payslip.employee_id.id),
+            ('date_from', '>=', payslip.date_from.replace(month=1, day=1)),
+            ('date_to', '&lt;', payslip.date_from),
+            ('state', 'in', ['done', 'paid']),
+        ])
+        ytd = abs(sum(
+            l.total for l in prior_slips.mapped('line_ids').filtered(lambda l: l.code == 'QPP2_EE')
+        ))
+        remaining = max(qpp2_max - ytd, 0)
+        result = -min(period_contribution, remaining) if remaining &gt; 0 else 0
+    else:
+        result = 0
+        </field>
+    </record>
+
+    <!-- ======================== QPIP EMPLOYEE ======================== -->
+    <record id="salary_rule_qc_qpip_ee" model="hr.salary.rule">
+        <field name="name">QPIP Employee Premium</field>
+        <field name="code">QPIP_EE</field>
+        <field name="sequence">13</field>
+        <field name="category_id" ref="hr_salary_rule_category_qc_qpip"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+gross_amount = result_rules.get('GROSS_QC', {}).get('total', 0)
+if version.l10n_ca_qc_qpip_exempt:
+    result = 0
+else:
+    pay_periods = version.l10n_ca_qc_pay_periods or 26
+    qpip_rate = payslip._rule_parameter('l10n_ca_qc_qpip_employee_rate')
+    qpip_max_insurable = payslip._rule_parameter('l10n_ca_qc_qpip_max_insurable')
+    qpip_max_premium = payslip._rule_parameter('l10n_ca_qc_qpip_max_ee_premium')
+    period_max_insurable = qpip_max_insurable / pay_periods
+    insurable = min(gross_amount, period_max_insurable)
+    period_premium = insurable * qpip_rate
+    # YTD accumulation
+    prior_slips = payslip.env['hr.payslip'].search([
+        ('employee_id', '=', payslip.employee_id.id),
+        ('date_from', '>=', payslip.date_from.replace(month=1, day=1)),
+        ('date_to', '&lt;', payslip.date_from),
+        ('state', 'in', ['done', 'paid']),
+    ])
+    ytd = abs(sum(
+        l.total for l in prior_slips.mapped('line_ids').filtered(lambda l: l.code == 'QPIP_EE')
+    ))
+    remaining = max(qpip_max_premium - ytd, 0)
+    result = -min(period_premium, remaining) if remaining &gt; 0 else 0
+        </field>
+    </record>
+
+    <!-- ======================== EI EMPLOYEE (QUEBEC REDUCED) ======================== -->
+    <record id="salary_rule_qc_ei_ee" model="hr.salary.rule">
+        <field name="name">EI Employee Premium (Quebec)</field>
+        <field name="code">EI_EE_QC</field>
+        <field name="sequence">15</field>
+        <field name="category_id" ref="hr_salary_rule_category_qc_ei"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+gross_amount = result_rules.get('GROSS_QC', {}).get('total', 0)
+if version.l10n_ca_qc_ei_exempt:
+    result = 0
+else:
+    pay_periods = version.l10n_ca_qc_pay_periods or 26
+    ei_rate = payslip._rule_parameter('l10n_ca_qc_ei_employee_rate')
+    ei_max_insurable = payslip._rule_parameter('l10n_ca_qc_ei_max_insurable')
+    ei_max_premium = payslip._rule_parameter('l10n_ca_qc_ei_max_premium')
+    period_max_insurable = ei_max_insurable / pay_periods
+    insurable = min(gross_amount, period_max_insurable)
+    period_premium = insurable * ei_rate
+    # YTD accumulation
+    prior_slips = payslip.env['hr.payslip'].search([
+        ('employee_id', '=', payslip.employee_id.id),
+        ('date_from', '>=', payslip.date_from.replace(month=1, day=1)),
+        ('date_to', '&lt;', payslip.date_from),
+        ('state', 'in', ['done', 'paid']),
+    ])
+    ytd = abs(sum(
+        l.total for l in prior_slips.mapped('line_ids').filtered(lambda l: l.code == 'EI_EE_QC')
+    ))
+    remaining = max(ei_max_premium - ytd, 0)
+    result = -min(period_premium, remaining) if remaining &gt; 0 else 0
+        </field>
+    </record>
+
+    <!-- ======================== FEDERAL INCOME TAX ======================== -->
+    <record id="salary_rule_qc_fed_tax" model="hr.salary.rule">
+        <field name="name">Federal Income Tax</field>
+        <field name="code">FED_TAX_QC</field>
+        <field name="sequence">20</field>
+        <field name="category_id" ref="hr_salary_rule_category_qc_fed_tax"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+gross_amount = result_rules.get('GROSS_QC', {}).get('total', 0)
+rrsp = abs(result_rules.get('RRSP_QC', {}).get('total', 0))
+rpp = abs(result_rules.get('RPP_QC', {}).get('total', 0))
+union = abs(result_rules.get('UNION_QC', {}).get('total', 0))
+pay_periods = version.l10n_ca_qc_pay_periods or 26
+taxable_per_period = gross_amount - rrsp - rpp - union
+annual_income = taxable_per_period * pay_periods
+
+fed_brackets = [
+    (payslip._rule_parameter('l10n_ca_qc_fed_bracket_1'), payslip._rule_parameter('l10n_ca_qc_fed_rate_1')),
+    (payslip._rule_parameter('l10n_ca_qc_fed_bracket_2'), payslip._rule_parameter('l10n_ca_qc_fed_rate_2')),
+    (payslip._rule_parameter('l10n_ca_qc_fed_bracket_3'), payslip._rule_parameter('l10n_ca_qc_fed_rate_3')),
+    (payslip._rule_parameter('l10n_ca_qc_fed_bracket_4'), payslip._rule_parameter('l10n_ca_qc_fed_rate_4')),
+    (float('inf'), payslip._rule_parameter('l10n_ca_qc_fed_rate_5')),
+]
+
+bpa_max = payslip._rule_parameter('l10n_ca_qc_fed_basic_personal_amount')
+bpa_min = payslip._rule_parameter('l10n_ca_qc_fed_bpa_min')
+phase_out_start = payslip._rule_parameter('l10n_ca_qc_fed_bracket_3')
+phase_out_end = payslip._rule_parameter('l10n_ca_qc_fed_bracket_4')
+
+if annual_income &lt;= phase_out_start:
+    fed_bpa = bpa_max
+elif annual_income &gt;= phase_out_end:
+    fed_bpa = bpa_min
+else:
+    fed_bpa = bpa_max - (bpa_max - bpa_min) * (annual_income - phase_out_start) / (phase_out_end - phase_out_start)
+
+tax = 0
+prev_bracket = 0
+for bracket, rate in fed_brackets:
+    taxable_in_bracket = min(annual_income, bracket) - prev_bracket
+    if taxable_in_bracket &gt; 0:
+        tax += taxable_in_bracket * rate
+    prev_bracket = bracket
+    if annual_income &lt;= bracket:
+        break
+
+credit = fed_bpa * fed_brackets[0][1]
+annual_tax = max(tax - credit, 0)
+
+# Quebec abatement: 16.5% reduction of federal tax
+annual_tax = annual_tax * 0.835
+
+additional = version.l10n_ca_qc_additional_fed_tax or 0
+result = -(annual_tax / pay_periods + additional)
+        </field>
+    </record>
+
+    <!-- ======================== QUEBEC PROVINCIAL TAX ======================== -->
+    <record id="salary_rule_qc_prov_tax" model="hr.salary.rule">
+        <field name="name">Quebec Provincial Income Tax</field>
+        <field name="code">PROV_TAX_QC</field>
+        <field name="sequence">25</field>
+        <field name="category_id" ref="hr_salary_rule_category_qc_prov_tax"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+gross_amount = result_rules.get('GROSS_QC', {}).get('total', 0)
+rrsp = abs(result_rules.get('RRSP_QC', {}).get('total', 0))
+rpp = abs(result_rules.get('RPP_QC', {}).get('total', 0))
+union = abs(result_rules.get('UNION_QC', {}).get('total', 0))
+pay_periods = version.l10n_ca_qc_pay_periods or 26
+taxable_per_period = gross_amount - rrsp - rpp - union
+annual_income = taxable_per_period * pay_periods
+
+prov_brackets = [
+    (payslip._rule_parameter('l10n_ca_qc_prov_bracket_1'), payslip._rule_parameter('l10n_ca_qc_prov_rate_1')),
+    (payslip._rule_parameter('l10n_ca_qc_prov_bracket_2'), payslip._rule_parameter('l10n_ca_qc_prov_rate_2')),
+    (payslip._rule_parameter('l10n_ca_qc_prov_bracket_3'), payslip._rule_parameter('l10n_ca_qc_prov_rate_3')),
+    (float('inf'), payslip._rule_parameter('l10n_ca_qc_prov_rate_4')),
+]
+
+tax = 0
+prev_bracket = 0
+for bracket, rate in prov_brackets:
+    taxable_in_bracket = min(annual_income, bracket) - prev_bracket
+    if taxable_in_bracket &gt; 0:
+        tax += taxable_in_bracket * rate
+    prev_bracket = bracket
+    if annual_income &lt;= bracket:
+        break
+
+qc_bpa = payslip._rule_parameter('l10n_ca_qc_prov_basic_personal_amount')
+qc_credit = qc_bpa * prov_brackets[0][1]
+provincial_tax = max(tax - qc_credit, 0)
+
+additional = version.l10n_ca_qc_additional_prov_tax or 0
+result = -(provincial_tax / pay_periods + additional)
+        </field>
+    </record>
+
+    <!-- ======================== GARNISHMENT DEDUCTION (sequence 95) ======================== -->
+    <record id="salary_rule_qc_garnish" model="hr.salary.rule">
+        <field name="name">Garnishment / Court-Ordered Deduction</field>
+        <field name="code">GARNISH_QC</field>
+        <field name="sequence">95</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+ref_date = payslip.date_from
+result = bool(payslip.employee_id.l10n_ca_qc_garnishment_ids.filtered(
+    lambda g: g.active and g.start_date &lt;= ref_date and (not g.end_date or g.end_date >= ref_date)
+))
+        </field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+ref_date = payslip.date_from
+net_so_far = (
+    result_rules.get('GROSS_QC', {}).get('total', 0)
+    + result_rules.get('RRSP_QC', {}).get('total', 0)
+    + result_rules.get('RPP_QC', {}).get('total', 0)
+    + result_rules.get('UNION_QC', {}).get('total', 0)
+    + result_rules.get('QPP_EE', {}).get('total', 0)
+    + result_rules.get('QPP2_EE', {}).get('total', 0)
+    + result_rules.get('QPIP_EE', {}).get('total', 0)
+    + result_rules.get('EI_EE_QC', {}).get('total', 0)
+    + result_rules.get('FED_TAX_QC', {}).get('total', 0)
+    + result_rules.get('PROV_TAX_QC', {}).get('total', 0)
+)
+active_garnishments = payslip.employee_id.l10n_ca_qc_garnishment_ids.filtered(
+    lambda g: g.active and g.start_date &lt;= ref_date and (not g.end_date or g.end_date >= ref_date)
+).sorted('priority')
+total_garnish = 0
+for garnishment in active_garnishments:
+    exempt = garnishment.exempt_amount or 0
+    disposable = max(net_so_far - exempt, 0)
+    if garnishment.is_percentage:
+        deduction = disposable * garnishment.percentage
+    else:
+        deduction = garnishment.amount
+    deduction = min(deduction, disposable)
+    total_garnish += deduction
+result = -total_garnish
+        </field>
+    </record>
+
+    <!-- ======================== NET SALARY ======================== -->
+    <record id="salary_rule_qc_net" model="hr.salary.rule">
+        <field name="name">Net Salary</field>
+        <field name="code">NET_QC</field>
+        <field name="sequence">100</field>
+        <field name="category_id" ref="hr_payroll.NET"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+result = (
+    result_rules.get('GROSS_QC', {}).get('total', 0)
+    + result_rules.get('RRSP_QC', {}).get('total', 0)
+    + result_rules.get('RPP_QC', {}).get('total', 0)
+    + result_rules.get('UNION_QC', {}).get('total', 0)
+    + result_rules.get('QPP_EE', {}).get('total', 0)
+    + result_rules.get('QPP2_EE', {}).get('total', 0)
+    + result_rules.get('QPIP_EE', {}).get('total', 0)
+    + result_rules.get('EI_EE_QC', {}).get('total', 0)
+    + result_rules.get('FED_TAX_QC', {}).get('total', 0)
+    + result_rules.get('PROV_TAX_QC', {}).get('total', 0)
+    + result_rules.get('GARNISH_QC', {}).get('total', 0)
+)
+        </field>
+    </record>
+
+    <!-- ======================== QPP EMPLOYER ======================== -->
+    <record id="salary_rule_qc_qpp_er" model="hr.salary.rule">
+        <field name="name">QPP Employer Contribution</field>
+        <field name="code">QPP_ER</field>
+        <field name="sequence">200</field>
+        <field name="category_id" ref="hr_salary_rule_category_qc_employer"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">result = -result_rules.get('QPP_EE', {}).get('total', 0)</field>
+    </record>
+
+    <!-- ======================== QPP2 EMPLOYER ======================== -->
+    <record id="salary_rule_qc_qpp2_er" model="hr.salary.rule">
+        <field name="name">QPP2 Employer Contribution</field>
+        <field name="code">QPP2_ER</field>
+        <field name="sequence">201</field>
+        <field name="category_id" ref="hr_salary_rule_category_qc_employer"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">result = -result_rules.get('QPP2_EE', {}).get('total', 0)</field>
+    </record>
+
+    <!-- ======================== QPIP EMPLOYER ======================== -->
+    <record id="salary_rule_qc_qpip_er" model="hr.salary.rule">
+        <field name="name">QPIP Employer Premium</field>
+        <field name="code">QPIP_ER</field>
+        <field name="sequence">203</field>
+        <field name="category_id" ref="hr_salary_rule_category_qc_employer"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+gross_amount = result_rules.get('GROSS_QC', {}).get('total', 0)
+if version.l10n_ca_qc_qpip_exempt:
+    result = 0
+else:
+    pay_periods = version.l10n_ca_qc_pay_periods or 26
+    qpip_er_rate = payslip._rule_parameter('l10n_ca_qc_qpip_employer_rate')
+    qpip_max_insurable = payslip._rule_parameter('l10n_ca_qc_qpip_max_insurable')
+    qpip_max_er_premium = payslip._rule_parameter('l10n_ca_qc_qpip_max_er_premium')
+    period_max_insurable = qpip_max_insurable / pay_periods
+    period_max_er_premium = qpip_max_er_premium / pay_periods
+    insurable = min(gross_amount, period_max_insurable)
+    result = min(insurable * qpip_er_rate, period_max_er_premium)
+        </field>
+    </record>
+
+    <!-- ======================== EI EMPLOYER ======================== -->
+    <record id="salary_rule_qc_ei_er" model="hr.salary.rule">
+        <field name="name">EI Employer Premium (Quebec)</field>
+        <field name="code">EI_ER_QC</field>
+        <field name="sequence">204</field>
+        <field name="category_id" ref="hr_salary_rule_category_qc_employer"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+ei_employer_mult = payslip._rule_parameter('l10n_ca_qc_ei_employer_multiplier')
+result = -result_rules.get('EI_EE_QC', {}).get('total', 0) * ei_employer_mult
+        </field>
+    </record>
+
+    <!-- ======================== CNESST EMPLOYER (sequence 205) ======================== -->
+    <record id="salary_rule_qc_cnesst_er" model="hr.salary.rule">
+        <field name="name">CNESST Employer Contribution</field>
+        <field name="code">CNESST_ER</field>
+        <field name="sequence">205</field>
+        <field name="category_id" ref="hr_salary_rule_category_qc_employer"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+gross_amount = result_rules.get('GROSS_QC', {}).get('total', 0)
+cnesst_rate = version.l10n_ca_qc_cnesst_rate or payslip._rule_parameter('l10n_ca_qc_cnesst_rate')
+result = gross_amount * cnesst_rate
+        </field>
+    </record>
+
+    <!-- ======================== HSF EMPLOYER (sequence 206) ======================== -->
+    <record id="salary_rule_qc_hsf_er" model="hr.salary.rule">
+        <field name="name">HSF Employer Contribution (Fonds des services de santé)</field>
+        <field name="code">HSF_ER</field>
+        <field name="sequence">206</field>
+        <field name="category_id" ref="hr_salary_rule_category_qc_employer"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+gross_amount = result_rules.get('GROSS_QC', {}).get('total', 0)
+hsf_rate = payslip._rule_parameter('l10n_ca_qc_hsf_rate')
+result = gross_amount * hsf_rate
+        </field>
+    </record>
+
+    <!-- ======================== CNT EMPLOYER (sequence 207) ======================== -->
+    <record id="salary_rule_qc_cnt_er" model="hr.salary.rule">
+        <field name="name">CNT Employer Contribution (Labour Standards)</field>
+        <field name="code">CNT_ER</field>
+        <field name="sequence">207</field>
+        <field name="category_id" ref="hr_salary_rule_category_qc_employer"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+gross_amount = result_rules.get('GROSS_QC', {}).get('total', 0)
+cnt_rate = payslip._rule_parameter('l10n_ca_qc_cnt_rate')
+result = gross_amount * cnt_rate
+        </field>
+    </record>
+
+    <!-- ======================== VACATION ACCRUAL (sequence 210) ======================== -->
+    <record id="salary_rule_qc_vac_accrual" model="hr.salary.rule">
+        <field name="name">Vacation Pay Accrual (Employer)</field>
+        <field name="code">VAC_ACCRUAL_QC</field>
+        <field name="sequence">210</field>
+        <field name="category_id" ref="hr_salary_rule_category_qc_employer"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">none</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+gross_amount = result_rules.get('GROSS_QC', {}).get('total', 0)
+accrual_record = payslip.env['l10n_ca_qc.vacation.accrual'].search(
+    [('employee_id', '=', payslip.employee_id.id)], limit=1
+)
+if accrual_record and accrual_record.accrual_rate:
+    rate = float(accrual_record.accrual_rate)
+else:
+    rate = 0.04
+result = gross_amount * rate
+        </field>
+    </record>
+
+    <!-- ======================== DPSP CONTRIBUTION (sequence 7) ======================== -->
+    <record id="salary_rule_qc_dpsp" model="hr.salary.rule">
+        <field name="name">DPSP Contribution (Deferred Profit Sharing Plan)</field>
+        <field name="code">DPSP_QC</field>
+        <field name="sequence">7</field>
+        <field name="category_id" ref="hr_payroll.DED"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.get('DPSP_QC') and inputs['DPSP_QC'].amount &gt; 0</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+result = -(inputs['DPSP_QC'].amount if inputs.get('DPSP_QC') else 0)
+        </field>
+    </record>
+
+    <!-- ======================== STOCK OPTION TAXABLE BENEFIT (sequence 4) ======================== -->
+    <record id="salary_rule_qc_stock_opt" model="hr.salary.rule">
+        <field name="name">Stock Option Taxable Benefit</field>
+        <field name="code">STOCK_OPT_QC</field>
+        <field name="sequence">4</field>
+        <field name="category_id" ref="hr_payroll.ALW"/>
+        <field name="struct_id" ref="hr_payroll_structure_qc_employee_salary"/>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = inputs.get('STOCK_OPT_QC') and inputs['STOCK_OPT_QC'].amount &gt; 0</field>
+        <field name="amount_select">code</field>
+        <field name="appears_on_payslip">True</field>
+        <field name="amount_python_compute">
+result = inputs['STOCK_OPT_QC'].amount if inputs.get('STOCK_OPT_QC') else 0
+        </field>
+    </record>
+
+</odoo>

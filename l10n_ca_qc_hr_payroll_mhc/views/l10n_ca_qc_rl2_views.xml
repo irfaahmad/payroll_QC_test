@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+
+    <!-- RL-2 Slip Form View -->
+    <record id="l10n_ca_qc_rl2_slip_form_view" model="ir.ui.view">
+        <field name="name">l10n_ca_qc.rl2.slip.form</field>
+        <field name="model">l10n_ca_qc.rl2.slip</field>
+        <field name="arch" type="xml">
+            <form string="RL-2 Slip">
+                <header>
+                    <button name="action_confirm"
+                            string="Confirm"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_send"
+                            string="Mark as Sent"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'confirmed'"/>
+                    <button name="action_draft"
+                            string="Reset to Draft"
+                            type="object"
+                            invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,sent"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Recipient Information">
+                            <field name="recipient_name"/>
+                            <field name="recipient_sin"/>
+                            <field name="recipient_address"/>
+                        </group>
+                        <group string="General Information">
+                            <field name="year"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <group string="RL-2 Boxes">
+                        <group>
+                            <field name="box_a"/>
+                            <field name="box_b"/>
+                            <field name="box_c"/>
+                            <field name="box_d"/>
+                        </group>
+                        <group>
+                            <field name="box_e"/>
+                            <field name="box_f"/>
+                            <field name="box_g"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- RL-2 Slip List View -->
+    <record id="l10n_ca_qc_rl2_slip_list_view" model="ir.ui.view">
+        <field name="name">l10n_ca_qc.rl2.slip.list</field>
+        <field name="model">l10n_ca_qc.rl2.slip</field>
+        <field name="arch" type="xml">
+            <list string="RL-2 Slips">
+                <field name="name"/>
+                <field name="recipient_name"/>
+                <field name="year"/>
+                <field name="box_a" string="Box A — Pension"/>
+                <field name="box_d" string="Box D — QC Tax"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-warning="state == 'confirmed'"
+                       decoration-success="state == 'sent'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- RL-2 Slip Window Action -->
+    <record id="action_l10n_ca_qc_rl2_slip" model="ir.actions.act_window">
+        <field name="name">RL-2 Slips</field>
+        <field name="res_model">l10n_ca_qc.rl2.slip</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('l10n_ca_qc_rl2_slip_list_view')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('l10n_ca_qc_rl2_slip_form_view')}),
+        ]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No RL-2 slips found. Create a new one!
+            </p>
+        </field>
+    </record>
+
+    <!-- RL-2 Summary Form View -->
+    <record id="l10n_ca_qc_rl2_summary_form_view" model="ir.ui.view">
+        <field name="name">l10n_ca_qc.rl2.summary.form</field>
+        <field name="model">l10n_ca_qc.rl2.summary</field>
+        <field name="arch" type="xml">
+            <form string="RL-2 Summary">
+                <header>
+                    <button name="action_export_xml"
+                            string="Export XML"
+                            type="object"
+                            class="btn-primary"/>
+                    <button name="action_confirm"
+                            string="Confirm"
+                            type="object"
+                            invisible="state != 'draft'"/>
+                    <button name="action_draft"
+                            string="Reset to Draft"
+                            type="object"
+                            invisible="state != 'confirmed'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Summary Information">
+                            <field name="year"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group string="Transmitter Information">
+                            <field name="transmitter_ne"/>
+                            <field name="transmitter_name"/>
+                            <field name="contact_name"/>
+                            <field name="contact_phone"/>
+                            <field name="contact_email"/>
+                        </group>
+                    </group>
+                    <group string="Totals">
+                        <group>
+                            <field name="total_recipients"/>
+                            <field name="total_pension"/>
+                            <field name="total_lump_sum"/>
+                            <field name="total_other"/>
+                        </group>
+                        <group>
+                            <field name="total_tax"/>
+                            <field name="total_annuities"/>
+                            <field name="total_self_employed"/>
+                            <field name="total_fees"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="RL-2 Slips" name="rl2_slips">
+                            <field name="rl2_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="recipient_name"/>
+                                    <field name="box_a" string="Box A"/>
+                                    <field name="box_b" string="Box B"/>
+                                    <field name="box_c" string="Box C"/>
+                                    <field name="box_d" string="Box D"/>
+                                    <field name="state" widget="badge"
+                                           decoration-info="state == 'draft'"
+                                           decoration-warning="state == 'confirmed'"
+                                           decoration-success="state == 'sent'"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- RL-2 Summary List View -->
+    <record id="l10n_ca_qc_rl2_summary_list_view" model="ir.ui.view">
+        <field name="name">l10n_ca_qc.rl2.summary.list</field>
+        <field name="model">l10n_ca_qc.rl2.summary</field>
+        <field name="arch" type="xml">
+            <list string="RL-2 Summaries">
+                <field name="name"/>
+                <field name="year"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="total_recipients"/>
+                <field name="total_pension"/>
+                <field name="total_tax"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-success="state == 'confirmed'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- RL-2 Summary Window Action -->
+    <record id="action_l10n_ca_qc_rl2_summary" model="ir.actions.act_window">
+        <field name="name">RL-2 Summary</field>
+        <field name="res_model">l10n_ca_qc.rl2.summary</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('l10n_ca_qc_rl2_summary_list_view')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('l10n_ca_qc_rl2_summary_form_view')}),
+        ]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No RL-2 summaries found. Create a new one!
+            </p>
+        </field>
+    </record>
+
+</odoo>

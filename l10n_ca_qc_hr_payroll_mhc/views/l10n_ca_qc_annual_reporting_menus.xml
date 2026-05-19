@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+
+    <!-- Annual Tax Reporting top-level dropdown menu under Payroll -->
+    <menuitem id="menu_annual_tax_reporting"
+              name="Annual Tax Reporting"
+              parent="hr_work_entry_enterprise.menu_hr_payroll_root"
+              sequence="90"/>
+
+    <menuitem id="menu_rl1_slips"
+              name="RL-1 Slips"
+              parent="menu_annual_tax_reporting"
+              action="action_l10n_ca_qc_rl1_slip"
+              sequence="10"/>
+
+    <menuitem id="menu_rl1_summary"
+              name="RL-1 Summary"
+              parent="menu_annual_tax_reporting"
+              action="action_l10n_ca_qc_rl1_summary"
+              sequence="15"/>
+
+    <menuitem id="menu_generate_rl1"
+              name="Generate RL-1 Slips"
+              parent="menu_annual_tax_reporting"
+              action="action_l10n_ca_qc_rl1_wizard"
+              sequence="18"/>
+
+    <menuitem id="menu_rl2_slips"
+              name="RL-2 Slips"
+              parent="menu_annual_tax_reporting"
+              action="action_l10n_ca_qc_rl2_slip"
+              sequence="20"/>
+
+    <menuitem id="menu_rl2_summary"
+              name="RL-2 Summary"
+              parent="menu_annual_tax_reporting"
+              action="action_l10n_ca_qc_rl2_summary"
+              sequence="25"/>
+
+    <menuitem id="menu_roe"
+              name="Record of Employment (ROE)"
+              parent="menu_annual_tax_reporting"
+              action="action_l10n_ca_qc_roe"
+              sequence="30"/>
+
+    <!-- T4 Slips -->
+    <menuitem id="menu_t4_slips"
+              name="T4 Slips"
+              parent="menu_annual_tax_reporting"
+              action="action_l10n_ca_qc_t4_slip"
+              sequence="35"/>
+
+    <menuitem id="menu_t4_summary"
+              name="T4 Summary"
+              parent="menu_annual_tax_reporting"
+              action="action_l10n_ca_qc_t4_summary"
+              sequence="40"/>
+
+    <!-- Remittance Reports -->
+    <menuitem id="menu_remittance_reports"
+              name="Remittance Reports"
+              parent="menu_annual_tax_reporting"
+              action="action_l10n_ca_qc_remittance_report"
+              sequence="50"/>
+
+    <!-- Payroll Configuration -->
+    <menuitem id="menu_payroll_config_qc"
+              name="Payroll Configuration"
+              parent="hr_work_entry_enterprise.menu_hr_payroll_root"
+              sequence="95"/>
+
+    <menuitem id="menu_vacation_accrual"
+              name="Vacation Pay Accrual"
+              parent="menu_payroll_config_qc"
+              action="action_l10n_ca_qc_vacation_accrual"
+              sequence="10"/>
+
+    <menuitem id="menu_garnishments"
+              name="Garnishments"
+              parent="menu_payroll_config_qc"
+              action="action_l10n_ca_qc_garnishment"
+              sequence="20"/>
+
+    <menuitem id="menu_qc_contract_settings"
+              name="Quebec Contract Settings"
+              parent="menu_payroll_config_qc"
+              action="action_l10n_ca_qc_hr_version"
+              sequence="30"/>
+
+</odoo>

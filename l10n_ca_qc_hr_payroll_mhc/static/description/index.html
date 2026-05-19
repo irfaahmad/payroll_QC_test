@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canada - Paie du Québec | MapleHorn Consulting Inc.</title>
+</head>
+<body style="font-family: Arial, sans-serif; color: #333; margin: 0; padding: 0; background: #fff;">
+
+    <!-- Bannière principale -->
+    <div style="background: linear-gradient(135deg, #1a5276 0%, #0b2545 100%); color: #fff; padding: 48px 40px; text-align: center;">
+        <img src="icon.png" alt="Icône Paie du Québec" style="width: 80px; height: 80px; margin-bottom: 16px; border-radius: 12px;" />
+        <h1 style="margin: 0 0 12px 0; font-size: 2.4em; font-weight: 700; letter-spacing: 1px;">Canada – Paie du Québec</h1>
+        <p style="margin: 0 0 8px 0; font-size: 1.2em; opacity: 0.9;">
+            Module complet de paie québécoise pour Odoo 18 Enterprise
+        </p>
+        <p style="margin: 0; font-size: 1em; opacity: 0.75;">
+            RRQ/RRQ2, RQAP, AE (taux réduit), Impôt fédéral &amp; provincial, RL-1, RL-2, T4, RE — Conforme à Revenu Québec &amp; l'ARC 2026
+        </p>
+    </div>
+
+    <!-- Contenu principal -->
+    <div style="max-width: 960px; margin: 0 auto; padding: 40px 24px;">
+
+        <!-- Vue d'ensemble -->
+        <section style="margin-bottom: 48px;">
+            <h2 style="color: #1a5276; font-size: 1.8em; border-bottom: 3px solid #1a5276; padding-bottom: 8px; margin-bottom: 20px;">
+                Vue d'ensemble
+            </h2>
+            <p style="font-size: 1.05em; line-height: 1.7; margin: 0 0 16px 0;">
+                Le module <strong>Canada – Paie du Québec</strong> par <strong>MapleHorn Consulting Inc.</strong>
+                fournit un ensemble complet de règles salariales, de déclarations fiscales annuelles et d'outils
+                de configuration de paie conçus <strong>exclusivement pour la province de Québec</strong>. Il
+                s'intègre nativement au module <em>hr_payroll</em> d'Odoo et inclut les taux 2026 de Revenu
+                Québec et de l'Agence du revenu du Canada (ARC).
+            </p>
+            <p style="font-size: 1.05em; line-height: 1.7; margin: 0;">
+                Conçu pour les employeurs québécois, ce module gère le RRQ/RRQ2, le RQAP, l'AE au taux réduit
+                du Québec, l'impôt fédéral avec l'abattement de 16,5 %, l'impôt provincial sur 4 paliers,
+                l'accumulation de la paie de vacances, les saisies-arrêts et les déclarations fiscales de fin
+                d'année — le tout directement dans Odoo.
+            </p>
+        </section>
+
+        <!-- Bannière -->
+        <section style="margin-bottom: 48px; text-align: center;">
+            <img src="banner.png" alt="Bannière Paie du Québec"
+                 style="max-width: 100%; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+        </section>
+
+        <!-- Fonctionnalités clés -->
+        <section style="margin-bottom: 48px;">
+            <h2 style="color: #1a5276; font-size: 1.8em; border-bottom: 3px solid #1a5276; padding-bottom: 8px; margin-bottom: 24px;">
+                Fonctionnalités clés
+            </h2>
+
+            <!-- Cotisations et primes -->
+            <div style="background: #f9f9f9; border-left: 4px solid #1a5276; border-radius: 4px; padding: 20px 24px; margin-bottom: 20px;">
+                <h3 style="color: #1a5276; margin: 0 0 12px 0; font-size: 1.2em;">&#128176; Cotisations et primes</h3>
+                <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                    <li><strong>RRQ / RRQ2</strong> — Régime de rentes du Québec (remplace le RPC)</li>
+                    <li><strong>RQAP</strong> — Régime québécois d'assurance parentale</li>
+                    <li><strong>AE</strong> — Assurance-emploi au taux réduit du Québec</li>
+                    <li><strong>Cotisations employeur</strong> : RRQ, RRQ2, RQAP, AE, CNESST, FSS, CNT</li>
+                    <li>Accumulation annuelle et plafonds maximaux appliqués automatiquement</li>
+                </ul>
+            </div>
+
+            <!-- Impôts sur le revenu -->
+            <div style="background: #f9f9f9; border-left: 4px solid #1a5276; border-radius: 4px; padding: 20px 24px; margin-bottom: 20px;">
+                <h3 style="color: #1a5276; margin: 0 0 12px 0; font-size: 1.2em;">&#129534; Impôts sur le revenu</h3>
+                <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                    <li><strong>Impôt fédéral</strong> avec abattement du Québec de 16,5 %</li>
+                    <li><strong>Impôt provincial du Québec</strong> — 4 paliers d'imposition</li>
+                    <li>Codes de réclamation <strong>TD1 fédéral</strong> (Code 1 à 10, X, 0)</li>
+                    <li>Codes de réclamation <strong>TP-1015.3 provincial</strong> (Code A à J, X, 0)</li>
+                    <li>Déductions supplémentaires fédérales et provinciales par période</li>
+                </ul>
+            </div>
+
+            <!-- Déductions avant impôt -->
+            <div style="background: #f9f9f9; border-left: 4px solid #1a5276; border-radius: 4px; padding: 20px 24px; margin-bottom: 20px;">
+                <h3 style="color: #1a5276; margin: 0 0 12px 0; font-size: 1.2em;">&#128196; Déductions avant impôt</h3>
+                <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                    <li><strong>RÉER</strong> — Régime enregistré d'épargne-retraite</li>
+                    <li><strong>RPA</strong> — Régime de pension agréé</li>
+                    <li><strong>RPDB</strong> — Régime de participation différée aux bénéfices</li>
+                    <li><strong>Cotisations syndicales</strong></li>
+                </ul>
+            </div>
+
+            <!-- Vacances et avantages -->
+            <div style="background: #f9f9f9; border-left: 4px solid #1a5276; border-radius: 4px; padding: 20px 24px; margin-bottom: 20px;">
+                <h3 style="color: #1a5276; margin: 0 0 12px 0; font-size: 1.2em;">&#127958;&#65039; Vacances et avantages</h3>
+                <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                    <li>Accumulation automatique de la <strong>paie de vacances</strong> (4 %, 6 % ou 8 %)</li>
+                    <li>Versement de la paie de vacances via entrée de salaire</li>
+                    <li><strong>Avantages imposables</strong> : véhicule, assurance collective, logement, options d'achat d'actions</li>
+                    <li>Paie rétroactive, indemnité de cessation d'emploi, indemnité de départ</li>
+                    <li>Paie des jours fériés</li>
+                </ul>
+            </div>
+
+            <!-- Saisies et ordonnances -->
+            <div style="background: #f9f9f9; border-left: 4px solid #1a5276; border-radius: 4px; padding: 20px 24px; margin-bottom: 20px;">
+                <h3 style="color: #1a5276; margin: 0 0 12px 0; font-size: 1.2em;">&#9878;&#65039; Saisies-arrêts et ordonnances</h3>
+                <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                    <li>Saisies-arrêts sur salaire / ordonnances de tribunal</li>
+                    <li>Types : pension alimentaire, soutien au conjoint, dette fiscale, autre</li>
+                    <li>Priorité, montant fixe ou pourcentage, montant exempt</li>
+                    <li>Suivi du solde restant et désactivation automatique</li>
+                </ul>
+            </div>
+
+            <!-- Bulletins de paie bilingues -->
+            <div style="background: #f9f9f9; border-left: 4px solid #1a5276; border-radius: 4px; padding: 20px 24px; margin-bottom: 20px;">
+                <h3 style="color: #1a5276; margin: 0 0 12px 0; font-size: 1.2em;">&#127760; Bulletins de paie bilingues</h3>
+                <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                    <li>Modèles de bulletin de paie en <strong>anglais et en français</strong></li>
+                    <li>Conformité à la <strong>Loi 96</strong> (Charte de la langue française)</li>
+                </ul>
+            </div>
+
+            <!-- Fréquences de paie -->
+            <div style="background: #f9f9f9; border-left: 4px solid #1a5276; border-radius: 4px; padding: 20px 24px; margin-bottom: 0;">
+                <h3 style="color: #1a5276; margin: 0 0 12px 0; font-size: 1.2em;">&#9881;&#65039; Fréquences de paie</h3>
+                <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                    <li>Hebdomadaire (52 périodes)</li>
+                    <li>Aux deux semaines (26 périodes)</li>
+                    <li>Bimensuel (24 périodes)</li>
+                    <li>Mensuel (12 périodes)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Capture d'écran 1 : Calcul du bulletin de paie -->
+        <section style="margin-bottom: 48px; text-align: center;">
+            <img src="Screenshot_1.png" alt="Calcul du bulletin de paie avec RRQ, RQAP, AE et impôts fédéral/provincial"
+                 style="max-width: 100%; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+            <p style="margin-top: 10px; font-size: 0.9em; color: #666; font-style: italic;">
+                Calcul du bulletin de paie : RRQ, RQAP, AE, impôts fédéral et provincial, et salaire net
+            </p>
+        </section>
+
+        <!-- 29 règles salariales -->
+        <section style="margin-bottom: 48px;">
+            <h2 style="color: #1a5276; font-size: 1.8em; border-bottom: 3px solid #1a5276; padding-bottom: 8px; margin-bottom: 20px;">
+                29 règles salariales incluses
+            </h2>
+            <p style="font-size: 1.05em; line-height: 1.7; margin: 0 0 20px 0;">
+                Structure de paie complète : <strong>« Quebec Employee Salary »</strong>
+            </p>
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.95em;">
+                <thead>
+                    <tr style="background: #1a5276; color: #fff;">
+                        <th style="padding: 10px 12px; text-align: left;">Nom</th>
+                        <th style="padding: 10px 12px; text-align: left;">Code</th>
+                        <th style="padding: 10px 12px; text-align: left;">Catégorie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">Salaire de base</td><td>BASIC_QC</td><td>Allocation</td></tr>
+                    <tr><td style="padding: 8px 12px;">Paie rétroactive</td><td>RETRO_QC</td><td>Allocation</td></tr>
+                    <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">Indemnité de cessation d'emploi</td><td>TERM_PAY_QC</td><td>Allocation</td></tr>
+                    <tr><td style="padding: 8px 12px;">Indemnité de départ</td><td>SEVERANCE_QC</td><td>Allocation</td></tr>
+                    <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">Paie de jour férié</td><td>STAT_HOL_QC</td><td>Allocation</td></tr>
+                    <tr><td style="padding: 8px 12px;">Avantages imposables</td><td>TAXABLE_BENEFITS_QC</td><td>Allocation</td></tr>
+                    <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">Option d'achat d'actions</td><td>STOCK_OPT_QC</td><td>Allocation</td></tr>
+                    <tr><td style="padding: 8px 12px;"><strong>Salaire brut</strong></td><td><strong>GROSS_QC</strong></td><td><strong>Salaire imposable</strong></td></tr>
+                    <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">RPA (Régime de pension agréé)</td><td>RPP_QC</td><td>Déduction</td></tr>
+                    <tr><td style="padding: 8px 12px;">RPDB</td><td>DPSP_QC</td><td>Déduction</td></tr>
+                    <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">Versement de paie de vacances</td><td>VAC_PAYOUT_QC</td><td>Allocation</td></tr>
+                    <tr><td style="padding: 8px 12px;">RÉER</td><td>RRSP_QC</td><td>Déduction</td></tr>
+                    <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">Cotisations syndicales</td><td>UNION_QC</td><td>Déduction</td></tr>
+                    <tr><td style="padding: 8px 12px;">Cotisation RRQ employé</td><td>QPP_EE</td><td>RRQ</td></tr>
+                    <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">Cotisation RRQ2 employé</td><td>QPP2_EE</td><td>RRQ</td></tr>
+                    <tr><td style="padding: 8px 12px;">Prime RQAP employé</td><td>QPIP_EE</td><td>RQAP</td></tr>
+                    <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">Prime AE employé (Québec)</td><td>EI_EE_QC</td><td>AE (Québec)</td></tr>
+                    <tr><td style="padding: 8px 12px;">Impôt fédéral sur le revenu</td><td>FED_TAX_QC</td><td>Impôt fédéral</td></tr>
+                    <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">Impôt provincial du Québec</td><td>PROV_TAX_QC</td><td>Impôt provincial</td></tr>
+                    <tr><td style="padding: 8px 12px;">Saisie-arrêt / ordonnance</td><td>GARNISH_QC</td><td>Déduction</td></tr>
+                    <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;"><strong>Salaire net</strong></td><td><strong>NET_QC</strong></td><td><strong>Net</strong></td></tr>
+                    <tr><td style="padding: 8px 12px;">Cotisation RRQ employeur</td><td>QPP_ER</td><td>Contributions employeur</td></tr>
+                    <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">Cotisation RRQ2 employeur</td><td>QPP2_ER</td><td>Contributions employeur</td></tr>
+                    <tr><td style="padding: 8px 12px;">Prime RQAP employeur</td><td>QPIP_ER</td><td>Contributions employeur</td></tr>
+                    <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">Prime AE employeur (Québec)</td><td>EI_ER_QC</td><td>Contributions employeur</td></tr>
+                    <tr><td style="padding: 8px 12px;">Cotisation CNESST employeur</td><td>CNESST_ER</td><td>Contributions employeur</td></tr>
+                    <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">Contribution FSS (Fonds des services de santé)</td><td>HSF_ER</td><td>Contributions employeur</td></tr>
+                    <tr><td style="padding: 8px 12px;">Contribution CNT (Normes du travail)</td><td>CNT_ER</td><td>Contributions employeur</td></tr>
+                    <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">Accumulation paie de vacances (employeur)</td><td>VAC_ACCRUAL_QC</td><td>Contributions employeur</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Capture d'écran 5 : Règles salariales -->
+        <section style="margin-bottom: 48px; text-align: center;">
+            <img src="Screenshot_5.png" alt="29 règles salariales du Québec dans Odoo"
+                 style="max-width: 100%; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+            <p style="margin-top: 10px; font-size: 0.9em; color: #666; font-style: italic;">
+                Liste complète des 29 règles salariales de la structure de paie « Quebec Employee »
+            </p>
+        </section>
+
+        <!-- Galerie de captures d'écran -->
+        <section style="margin-bottom: 48px;">
+            <h2 style="color: #1a5276; font-size: 1.8em; border-bottom: 3px solid #1a5276; padding-bottom: 8px; margin-bottom: 24px;">
+                Captures d'écran
+            </h2>
+
+            <!-- Capture 7 : Fiche employé — Onglet Paie -->
+            <div style="text-align: center; margin-bottom: 36px;">
+                <img src="Screenshot_7.png" alt="Fiche employé — onglet Paie"
+                     style="max-width: 100%; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+                <p style="margin-top: 10px; font-size: 0.9em; color: #666; font-style: italic;">
+                    Fiche employé — Onglet Paie : contrat avec catégorie « Quebec Employee », type de salaire, heures de travail et coûts employeur
+                </p>
+            </div>
+
+            <!-- Capture 6 : Fiche employé — Onglet Paie Québec -->
+            <div style="text-align: center; margin-bottom: 36px;">
+                <img src="Screenshot_6.png" alt="Fiche employé — onglet Paie Québec"
+                     style="max-width: 100%; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+                <p style="margin-top: 10px; font-size: 0.9em; color: #666; font-style: italic;">
+                    Fiche employé — Onglet Paie Québec : NAS, code TD1 fédéral, accumulation de paie de vacances et saisies-arrêts
+                </p>
+            </div>
+
+            <!-- Capture 8 : Paramètres du contrat québécois -->
+            <div style="text-align: center; margin-bottom: 36px;">
+                <img src="Screenshot_8.png" alt="Paramètres du contrat québécois — vue liste"
+                     style="max-width: 100%; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+                <p style="margin-top: 10px; font-size: 0.9em; color: #666; font-style: italic;">
+                    Paramètres du contrat québécois : fréquence de paie, codes TD1 / TP-1015.3, exemptions RRQ, AE, RQAP
+                </p>
+            </div>
+
+            <!-- Captures 9 et 4 : Paie de vacances -->
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 36px;">
+                <div style="flex: 1; min-width: 280px; text-align: center;">
+                    <img src="Screenshot_9.png" alt="Paie de vacances — formulaire"
+                         style="max-width: 100%; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666; font-style: italic;">
+                        Paie de vacances — Formulaire : taux automatique selon les années de service (4 %, 6 % ou 8 %)
+                    </p>
+                </div>
+                <div style="flex: 1; min-width: 280px; text-align: center;">
+                    <img src="Screenshot_4.png" alt="Paie de vacances — sélection du taux"
+                         style="max-width: 100%; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666; font-style: italic;">
+                        Paie de vacances — Taux : sélection conforme aux Normes du travail du Québec
+                    </p>
+                </div>
+            </div>
+
+            <!-- Capture 10 : Saisies-arrêts -->
+            <div style="text-align: center; margin-bottom: 36px;">
+                <img src="Screenshot_10.png" alt="Saisies-arrêts et ordonnances du tribunal"
+                     style="max-width: 100%; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+                <p style="margin-top: 10px; font-size: 0.9em; color: #666; font-style: italic;">
+                    Saisies-arrêts et ordonnances : pension alimentaire, soutien au conjoint, dette fiscale, suivi du solde
+                </p>
+            </div>
+
+            <!-- Captures 2 et 3 : Menus -->
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 0;">
+                <div style="flex: 1; min-width: 280px; text-align: center;">
+                    <img src="Screenshot_2.png" alt="Menu des déclarations fiscales annuelles"
+                         style="max-width: 100%; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666; font-style: italic;">
+                        Menu — Déclarations fiscales annuelles : RL-1, RL-2, T4, RE et rapports de versement
+                    </p>
+                </div>
+                <div style="flex: 1; min-width: 280px; text-align: center;">
+                    <img src="Screenshot_3.png" alt="Menu de configuration de la paie"
+                         style="max-width: 100%; border: 1px solid #ddd; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666; font-style: italic;">
+                        Menu — Configuration de la paie : accumulation de vacances, saisies-arrêts, paramètres de contrat
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Déclarations fiscales de fin d'année -->
+        <section style="margin-bottom: 48px;">
+            <h2 style="color: #1a5276; font-size: 1.8em; border-bottom: 3px solid #1a5276; padding-bottom: 8px; margin-bottom: 24px;">
+                Déclarations fiscales de fin d'année
+            </h2>
+
+            <!-- RL-1 -->
+            <div style="background: #f9f9f9; border-left: 4px solid #1a5276; border-radius: 4px; padding: 20px 24px; margin-bottom: 20px;">
+                <h3 style="color: #1a5276; margin: 0 0 12px 0; font-size: 1.2em;">&#128196; Relevé 1 (RL-1)</h3>
+                <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                    <li>Feuillets RL-1 générés automatiquement à partir des bulletins de paie confirmés</li>
+                    <li>Sommaire RL-1 pour la production auprès de Revenu Québec</li>
+                </ul>
+            </div>
+
+            <!-- RL-2 -->
+            <div style="background: #f9f9f9; border-left: 4px solid #1a5276; border-radius: 4px; padding: 20px 24px; margin-bottom: 20px;">
+                <h3 style="color: #1a5276; margin: 0 0 12px 0; font-size: 1.2em;">&#128196; Relevé 2 (RL-2)</h3>
+                <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                    <li>Feuillets RL-2 pour les revenus de retraite et de rentes</li>
+                    <li>Sommaire RL-2 pour la production auprès de Revenu Québec</li>
+                </ul>
+            </div>
+
+            <!-- T4 -->
+            <div style="background: #f9f9f9; border-left: 4px solid #1a5276; border-radius: 4px; padding: 20px 24px; margin-bottom: 20px;">
+                <h3 style="color: #1a5276; margin: 0 0 12px 0; font-size: 1.2em;">&#128202; T4 — État de la rémunération payée</h3>
+                <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                    <li>Feuillets T4 générés automatiquement à partir des bulletins de paie confirmés</li>
+                    <li>Sommaire T4 avec export XML conforme à l'ARC (format T619)</li>
+                    <li>Totaux automatiques des cotisations employeur et employé</li>
+                </ul>
+            </div>
+
+            <!-- RE -->
+            <div style="background: #f9f9f9; border-left: 4px solid #1a5276; border-radius: 4px; padding: 20px 24px; margin-bottom: 20px;">
+                <h3 style="color: #1a5276; margin: 0 0 12px 0; font-size: 1.2em;">&#128203; Relevé d'emploi (RE)</h3>
+                <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                    <li>Génération des relevés d'emploi directement depuis le menu de paie</li>
+                    <li>Export XML pour la production électronique auprès de Service Canada (format RE Web)</li>
+                </ul>
+            </div>
+
+            <!-- Rapports de versement -->
+            <div style="background: #f9f9f9; border-left: 4px solid #1a5276; border-radius: 4px; padding: 20px 24px; margin-bottom: 0;">
+                <h3 style="color: #1a5276; margin: 0 0 12px 0; font-size: 1.2em;">&#128202; Rapports de versement</h3>
+                <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                    <li>Rapports de versement périodiques (style TPZ-1015.R.14)</li>
+                    <li>Sommaire des retenues à la source et des cotisations employeur</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Taux et paramètres 2026 -->
+        <section style="margin-bottom: 48px;">
+            <h2 style="color: #1a5276; font-size: 1.8em; border-bottom: 3px solid #1a5276; padding-bottom: 8px; margin-bottom: 24px;">
+                Taux et paramètres 2026 inclus
+            </h2>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 24px;">
+                <!-- Tableau gauche -->
+                <div style="flex: 1; min-width: 300px;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.95em;">
+                        <thead>
+                            <tr style="background: #1a5276; color: #fff;">
+                                <th style="padding: 10px 12px; text-align: left;">Paramètre</th>
+                                <th style="padding: 10px 12px; text-align: left;">Valeur 2026</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">RRQ — Taux employé</td><td>6,30 %</td></tr>
+                            <tr><td style="padding: 8px 12px;">RRQ — MGA</td><td>74 600 $</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">RRQ — Exemption de base</td><td>3 500 $</td></tr>
+                            <tr><td style="padding: 8px 12px;">RRQ — Cotisation max. employé</td><td>4 479,30 $</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">RRQ2 — Taux</td><td>4,00 %</td></tr>
+                            <tr><td style="padding: 8px 12px;">RRQ2 — Plafond (MGAP)</td><td>85 000 $</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">RRQ2 — Cotisation max.</td><td>416,00 $</td></tr>
+                            <tr><td style="padding: 8px 12px;">RQAP — Taux employé</td><td>0,430 %</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">RQAP — Taux employeur</td><td>0,602 %</td></tr>
+                            <tr><td style="padding: 8px 12px;">RQAP — Revenu max. assurable</td><td>103 000 $</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Tableau droit -->
+                <div style="flex: 1; min-width: 300px;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.95em;">
+                        <thead>
+                            <tr style="background: #1a5276; color: #fff;">
+                                <th style="padding: 10px 12px; text-align: left;">Paramètre</th>
+                                <th style="padding: 10px 12px; text-align: left;">Valeur 2026</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">AE — Taux employé (QC réduit)</td><td>1,30 %</td></tr>
+                            <tr><td style="padding: 8px 12px;">AE — Rémunération max. assurable</td><td>68 900 $</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">AE — Prime max. employé</td><td>895,70 $</td></tr>
+                            <tr><td style="padding: 8px 12px;">AE — Multiplicateur employeur</td><td>1,4×</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">Fédéral — Montant personnel de base</td><td>16 452 $</td></tr>
+                            <tr><td style="padding: 8px 12px;">Québec — Montant personnel de base</td><td>18 952 $</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">CNESST — Taux par défaut</td><td>1,65 %</td></tr>
+                            <tr><td style="padding: 8px 12px;">FSS — Taux</td><td>1,65 %</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">CNT — Taux</td><td>0,07 %</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Paliers d'imposition -->
+        <section style="margin-bottom: 48px;">
+            <h2 style="color: #1a5276; font-size: 1.8em; border-bottom: 3px solid #1a5276; padding-bottom: 8px; margin-bottom: 24px;">
+                Paliers d'imposition 2026
+            </h2>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 24px;">
+                <!-- Paliers fédéraux -->
+                <div style="flex: 1; min-width: 300px;">
+                    <h3 style="color: #c0392b; margin: 0 0 12px 0; font-size: 1.1em; text-align: center;">&#127464;&#127462; Paliers fédéraux</h3>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.95em;">
+                        <thead>
+                            <tr style="background: #c0392b; color: #fff;">
+                                <th style="padding: 10px 12px; text-align: left;">Revenu imposable</th>
+                                <th style="padding: 10px 12px; text-align: left;">Taux</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">Jusqu'à 58 523 $</td><td>14 %</td></tr>
+                            <tr><td style="padding: 8px 12px;">58 523 $ — 117 045 $</td><td>20,5 %</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">117 045 $ — 181 440 $</td><td>26 %</td></tr>
+                            <tr><td style="padding: 8px 12px;">181 440 $ — 258 482 $</td><td>29 %</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">Plus de 258 482 $</td><td>33 %</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Paliers provinciaux du Québec -->
+                <div style="flex: 1; min-width: 300px;">
+                    <h3 style="color: #2980b9; margin: 0 0 12px 0; font-size: 1.1em; text-align: center;">&#9878;&#65039; Paliers provinciaux du Québec</h3>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.95em;">
+                        <thead>
+                            <tr style="background: #2980b9; color: #fff;">
+                                <th style="padding: 10px 12px; text-align: left;">Revenu imposable</th>
+                                <th style="padding: 10px 12px; text-align: left;">Taux</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">Jusqu'à 54 345 $</td><td>14 %</td></tr>
+                            <tr><td style="padding: 8px 12px;">54 345 $ — 108 680 $</td><td>19 %</td></tr>
+                            <tr style="background: #f9f9f9;"><td style="padding: 8px 12px;">108 680 $ — 132 245 $</td><td>24 %</td></tr>
+                            <tr><td style="padding: 8px 12px;">Plus de 132 245 $</td><td>25,75 %</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prérequis -->
+        <section style="margin-bottom: 48px;">
+            <h2 style="color: #1a5276; font-size: 1.8em; border-bottom: 3px solid #1a5276; padding-bottom: 8px; margin-bottom: 20px;">
+                Prérequis
+            </h2>
+            <ul style="font-size: 1.05em; line-height: 1.9; padding-left: 20px; margin: 0;">
+                <li><strong>Odoo 18.0 & 19.0 Enterprise</strong></li>
+                <li>Module Paie Odoo (<code>hr_payroll</code>)</li>
+                <li>Entrées de travail et congés (<code>hr_work_entry_holidays</code>)</li>
+                <li>Paie et congés (<code>hr_payroll_holidays</code>)</li>
+            </ul>
+            <p style="margin-top: 14px; font-size: 0.9em; color: #888;">
+                * Ce module est conçu exclusivement pour le Québec. Pour les autres provinces et territoires canadiens, consultez le module <strong>Canada – Payroll</strong>.
+            </p>
+        </section>
+
+        <!-- Licence -->
+        <section style="margin-bottom: 48px;">
+            <h2 style="color: #1a5276; font-size: 1.8em; border-bottom: 3px solid #1a5276; padding-bottom: 8px; margin-bottom: 20px;">
+                Licence
+            </h2>
+            <p style="font-size: 1.05em; line-height: 1.7; margin: 0;">
+                Ce module est distribué sous licence <strong>OPL-1 (Odoo Proprietary License v1.0)</strong>.
+                L'utilisation complète nécessite une instance Odoo Enterprise valide. La redistribution n'est
+                pas autorisée sans le consentement écrit de l'auteur.
+            </p>
+        </section>
+
+        <!-- À propos -->
+        <section style="background: #f9f9f9; border-radius: 8px; padding: 28px 32px; margin-bottom: 24px;">
+            <h2 style="color: #1a5276; font-size: 1.5em; margin: 0 0 14px 0;">À propos de MapleHorn Consulting Inc.</h2>
+            <p style="margin: 0 0 10px 0; font-size: 1.05em; line-height: 1.7;">
+                MapleHorn Consulting Inc. se spécialise dans les implantations et personnalisations Odoo pour
+                les entreprises canadiennes. Nous nous engageons à livrer des modules Odoo de haute qualité,
+                conformes aux normes en vigueur, qui simplifient la gestion d'entreprise au Canada.
+            </p>
+            <p style="margin: 0; font-size: 1.05em;">
+                &#127760; <a href="https://www.maplehornconsulting.com" style="color: #1a5276; text-decoration: none;">
+                    www.maplehornconsulting.com
+                </a>
+                &nbsp;&bull;&nbsp;
+                &#128231; <a href="mailto:Info@maplehornconsulting.com" style="color: #1a5276; text-decoration: none;">
+                    Info@maplehornconsulting.com
+                </a>
+            </p>
+        </section>
+
+    </div>
+
+    <!-- Pied de page -->
+    <div style="background: #1a1a1a; color: #aaa; text-align: center; padding: 20px; font-size: 0.85em;">
+        &copy; MapleHorn Consulting Inc. &bull; Licence OPL-1 &bull;
+        <a href="https://www.maplehornconsulting.com" style="color: #1a5276; text-decoration: none;">www.maplehornconsulting.com</a>
+    </div>
+
+</body>
+</html>

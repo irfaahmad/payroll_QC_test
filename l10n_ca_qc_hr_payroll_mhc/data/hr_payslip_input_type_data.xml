@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <record id="input_qc_overtime" model="hr.payslip.input.type">
+        <field name="name">Overtime</field>
+        <field name="code">OT_QC</field>
+        <field name="country_id" ref="base.ca"/>
+        <field name="struct_ids" eval="[(4, ref('hr_payroll_structure_qc_employee_salary'))]"/>
+    </record>
+    <record id="input_qc_bonus" model="hr.payslip.input.type">
+        <field name="name">Bonus</field>
+        <field name="code">BONUS_QC</field>
+        <field name="country_id" ref="base.ca"/>
+        <field name="struct_ids" eval="[(4, ref('hr_payroll_structure_qc_employee_salary'))]"/>
+    </record>
+    <record id="input_qc_commission" model="hr.payslip.input.type">
+        <field name="name">Commission</field>
+        <field name="code">COMMISSION_QC</field>
+        <field name="country_id" ref="base.ca"/>
+        <field name="struct_ids" eval="[(4, ref('hr_payroll_structure_qc_employee_salary'))]"/>
+    </record>
+    <record id="input_qc_rrsp" model="hr.payslip.input.type">
+        <field name="name">RRSP Deduction</field>
+        <field name="code">RRSP_QC</field>
+        <field name="country_id" ref="base.ca"/>
+        <field name="struct_ids" eval="[(4, ref('hr_payroll_structure_qc_employee_salary'))]"/>
+    </record>
+    <record id="input_qc_union" model="hr.payslip.input.type">
+        <field name="name">Union Dues</field>
+        <field name="code">UNION_QC</field>
+        <field name="country_id" ref="base.ca"/>
+        <field name="struct_ids" eval="[(4, ref('hr_payroll_structure_qc_employee_salary'))]"/>
+    </record>
+
+    <!-- ======================== NEW INPUT TYPES ======================== -->
+    <record id="input_qc_retro" model="hr.payslip.input.type">
+        <field name="name">Retroactive Pay</field>
+        <field name="code">RETRO_QC</field>
+        <field name="country_id" ref="base.ca"/>
+        <field name="struct_ids" eval="[(4, ref('hr_payroll_structure_qc_employee_salary'))]"/>
+    </record>
+    <record id="input_qc_stat_hol" model="hr.payslip.input.type">
+        <field name="name">Statutory Holiday Pay</field>
+        <field name="code">STAT_HOL_QC</field>
+        <field name="country_id" ref="base.ca"/>
+        <field name="struct_ids" eval="[(4, ref('hr_payroll_structure_qc_employee_salary'))]"/>
+    </record>
+    <record id="input_qc_vac_payout" model="hr.payslip.input.type">
+        <field name="name">Vacation Pay Payout</field>
+        <field name="code">VAC_PAYOUT_QC</field>
+        <field name="country_id" ref="base.ca"/>
+        <field name="struct_ids" eval="[(4, ref('hr_payroll_structure_qc_employee_salary'))]"/>
+    </record>
+    <record id="input_qc_txben_car" model="hr.payslip.input.type">
+        <field name="name">Taxable Benefit — Personal Use of Company Vehicle</field>
+        <field name="code">TXBEN_CAR_QC</field>
+        <field name="country_id" ref="base.ca"/>
+        <field name="struct_ids" eval="[(4, ref('hr_payroll_structure_qc_employee_salary'))]"/>
+    </record>
+    <record id="input_qc_txben_grp_ins" model="hr.payslip.input.type">
+        <field name="name">Taxable Benefit — Employer-Paid Group Insurance</field>
+        <field name="code">TXBEN_GRP_INS_QC</field>
+        <field name="country_id" ref="base.ca"/>
+        <field name="struct_ids" eval="[(4, ref('hr_payroll_structure_qc_employee_salary'))]"/>
+    </record>
+    <record id="input_qc_txben_housing" model="hr.payslip.input.type">
+        <field name="name">Taxable Benefit — Housing</field>
+        <field name="code">TXBEN_HOUSING_QC</field>
+        <field name="country_id" ref="base.ca"/>
+        <field name="struct_ids" eval="[(4, ref('hr_payroll_structure_qc_employee_salary'))]"/>
+    </record>
+    <record id="input_qc_txben_other" model="hr.payslip.input.type">
+        <field name="name">Taxable Benefit — Other</field>
+        <field name="code">TXBEN_OTHER_QC</field>
+        <field name="country_id" ref="base.ca"/>
+        <field name="struct_ids" eval="[(4, ref('hr_payroll_structure_qc_employee_salary'))]"/>
+    </record>
+    <record id="input_qc_rpp" model="hr.payslip.input.type">
+        <field name="name">RPP Contribution (Registered Pension Plan)</field>
+        <field name="code">RPP_QC</field>
+        <field name="country_id" ref="base.ca"/>
+        <field name="struct_ids" eval="[(4, ref('hr_payroll_structure_qc_employee_salary'))]"/>
+    </record>
+    <record id="input_qc_dpsp" model="hr.payslip.input.type">
+        <field name="name">DPSP Contribution (Deferred Profit Sharing Plan)</field>
+        <field name="code">DPSP_QC</field>
+        <field name="country_id" ref="base.ca"/>
+        <field name="struct_ids" eval="[(4, ref('hr_payroll_structure_qc_employee_salary'))]"/>
+    </record>
+    <record id="input_qc_stock_opt" model="hr.payslip.input.type">
+        <field name="name">Stock Option Taxable Benefit</field>
+        <field name="code">STOCK_OPT_QC</field>
+        <field name="country_id" ref="base.ca"/>
+        <field name="struct_ids" eval="[(4, ref('hr_payroll_structure_qc_employee_salary'))]"/>
+    </record>
+    <record id="input_qc_term_pay" model="hr.payslip.input.type">
+        <field name="name">Termination Pay</field>
+        <field name="code">TERM_PAY_QC</field>
+        <field name="country_id" ref="base.ca"/>
+        <field name="struct_ids" eval="[(4, ref('hr_payroll_structure_qc_employee_salary'))]"/>
+    </record>
+    <record id="input_qc_severance" model="hr.payslip.input.type">
+        <field name="name">Severance Pay</field>
+        <field name="code">SEVERANCE_QC</field>
+        <field name="country_id" ref="base.ca"/>
+        <field name="struct_ids" eval="[(4, ref('hr_payroll_structure_qc_employee_salary'))]"/>
+    </record>
+</odoo>
+

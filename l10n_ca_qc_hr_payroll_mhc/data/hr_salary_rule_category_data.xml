@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <record id="hr_salary_rule_category_qc_qpp" model="hr.salary.rule.category">
+        <field name="name">QPP</field>
+        <field name="code">QPP</field>
+    </record>
+    <record id="hr_salary_rule_category_qc_qpip" model="hr.salary.rule.category">
+        <field name="name">QPIP</field>
+        <field name="code">QPIP</field>
+    </record>
+    <record id="hr_salary_rule_category_qc_ei" model="hr.salary.rule.category">
+        <field name="name">EI (Quebec)</field>
+        <field name="code">EI_QC</field>
+    </record>
+    <record id="hr_salary_rule_category_qc_fed_tax" model="hr.salary.rule.category">
+        <field name="name">Federal Tax</field>
+        <field name="code">FED_TAX_QC</field>
+    </record>
+    <record id="hr_salary_rule_category_qc_prov_tax" model="hr.salary.rule.category">
+        <field name="name">Quebec Provincial Tax</field>
+        <field name="code">PROV_TAX_QC</field>
+    </record>
+    <record id="hr_salary_rule_category_qc_employer" model="hr.salary.rule.category">
+        <field name="name">Employer Contributions</field>
+        <field name="code">EMPLOYER_QC</field>
+    </record>
+</odoo>

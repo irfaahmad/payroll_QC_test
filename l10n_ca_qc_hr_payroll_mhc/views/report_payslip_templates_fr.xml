@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<!-- Bulletin de paie en français (Bill 96 compliance) -->
+<odoo>
+    <template id="report_payslip_qc_fr_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-if="o.struct_id.country_id.code == 'CA'">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <!-- En-tête -->
+                            <div class="row mb-4">
+                                <div class="col-6">
+                                    <h4>Bulletin de paie</h4>
+                                    <p>
+                                        <strong>Employé(e) :</strong>
+                                        <t t-esc="o.employee_id.name"/>
+                                    </p>
+                                    <p t-if="o.employee_id.l10n_ca_qc_sin">
+                                        <strong>NAS :</strong>
+                                        XXX XXX <t t-esc="o.employee_id.l10n_ca_qc_sin[-3:]"/>
+                                    </p>
+                                    <p>
+                                        <strong>Province :</strong> Québec
+                                    </p>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <p>
+                                        <strong>Période de paie :</strong>
+                                        <t t-esc="o.date_from"/> – <t t-esc="o.date_to"/>
+                                    </p>
+                                    <p>
+                                        <strong>Structure :</strong>
+                                        <t t-esc="o.struct_id.name"/>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Revenus -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5>Revenus</h5>
+                                    <table class="table table-sm table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Description</th>
+                                                <th class="text-right">Montant (CAD)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="o.line_ids.filtered(lambda l: l.category_id.code in ('ALW', 'GROSS') and l.appears_on_payslip)" t-as="line">
+                                                <tr>
+                                                    <td>
+                                                        <t t-if="line.code == 'BASIC_QC'">Salaire de base</t>
+                                                        <t t-elif="line.code == 'GROSS_QC'">Salaire brut</t>
+                                                        <t t-elif="line.code == 'RETRO_QC'">Paie rétroactive</t>
+                                                        <t t-elif="line.code == 'STAT_HOL_QC'">Indemnité de congé férié</t>
+                                                        <t t-elif="line.code == 'TAXABLE_BENEFITS_QC'">Avantages imposables</t>
+                                                        <t t-elif="line.code == 'VAC_PAYOUT_QC'">Paiement des vacances</t>
+                                                        <t t-elif="line.code == 'TERM_PAY_QC'">Indemnité de cessation d'emploi</t>
+                                                        <t t-elif="line.code == 'SEVERANCE_QC'">Indemnité de départ</t>
+                                                        <t t-else=""><t t-esc="line.name"/></t>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <t t-esc="'{:,.2f}'.format(line.total)"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Retenues -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5>Retenues</h5>
+                                    <table class="table table-sm table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Description</th>
+                                                <th class="text-right">Montant (CAD)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="o.line_ids.filtered(lambda l: l.category_id.code in ('QPP', 'QPIP', 'EI_QC', 'FED_TAX_QC', 'PROV_TAX_QC', 'DED') and l.appears_on_payslip)" t-as="line">
+                                                <tr>
+                                                    <td>
+                                                        <t t-if="line.code == 'QPP_EE'">Cotisation RRQ — employé(e)</t>
+                                                        <t t-elif="line.code == 'QPP2_EE'">Cotisation RRQ2 — employé(e)</t>
+                                                        <t t-elif="line.code == 'QPIP_EE'">Prime RQAP — employé(e)</t>
+                                                        <t t-elif="line.code == 'EI_EE_QC'">Prime AE (taux réduit QC)</t>
+                                                        <t t-elif="line.code == 'FED_TAX_QC'">Impôt fédéral sur le revenu</t>
+                                                        <t t-elif="line.code == 'PROV_TAX_QC'">Impôt provincial du Québec</t>
+                                                        <t t-elif="line.code == 'RRSP_QC'">Cotisation REER</t>
+                                                        <t t-elif="line.code == 'RPP_QC'">Cotisation RPA</t>
+                                                        <t t-elif="line.code == 'UNION_QC'">Cotisations syndicales</t>
+                                                        <t t-elif="line.code == 'GARNISH_QC'">Saisie-arrêt</t>
+                                                        <t t-else=""><t t-esc="line.name"/></t>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <t t-esc="'{:,.2f}'.format(abs(line.total))"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Salaire net -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table table-sm table-bordered">
+                                        <tbody>
+                                            <t t-foreach="o.line_ids.filtered(lambda l: l.code == 'NET_QC')" t-as="line">
+                                                <tr class="font-weight-bold">
+                                                    <td><strong>Salaire net</strong></td>
+                                                    <td class="text-right">
+                                                        <strong>
+                                                            <t t-esc="'{:,.2f}'.format(line.total)"/>
+                                                            CAD
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Contributions de l'employeur -->
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <h5>Contributions de l'employeur</h5>
+                                    <table class="table table-sm table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Description</th>
+                                                <th class="text-right">Montant (CAD)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="o.line_ids.filtered(lambda l: l.category_id.code == 'EMPLOYER_QC' and l.appears_on_payslip)" t-as="line">
+                                                <tr>
+                                                    <td>
+                                                        <t t-if="line.code == 'QPP_ER'">Cotisation RRQ — employeur</t>
+                                                        <t t-elif="line.code == 'QPP2_ER'">Cotisation RRQ2 — employeur</t>
+                                                        <t t-elif="line.code == 'QPIP_ER'">Prime RQAP — employeur</t>
+                                                        <t t-elif="line.code == 'EI_ER_QC'">Prime AE — employeur</t>
+                                                        <t t-elif="line.code == 'CNESST_ER'">Cotisation CNESST</t>
+                                                        <t t-elif="line.code == 'HSF_ER'">Cotisation FSS</t>
+                                                        <t t-elif="line.code == 'CNT_ER'">Cotisation CNT</t>
+                                                        <t t-elif="line.code == 'VAC_ACCRUAL_QC'">Provision pour vacances</t>
+                                                        <t t-else=""><t t-esc="line.name"/></t>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <t t-esc="'{:,.2f}'.format(line.total)"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- Bulletin de paie (French) Report Action -->
+    <record id="action_report_payslip_qc_fr" model="ir.actions.report">
+        <field name="name">Bulletin de paie (Québec)</field>
+        <field name="model">hr.payslip</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_ca_qc_hr_payroll_mhc.report_payslip_qc_fr_document</field>
+        <field name="report_file">l10n_ca_qc_hr_payroll_mhc.report_payslip_qc_fr_document</field>
+        <field name="binding_model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+
+    <!-- ======================== RL-1 Slip ======================== -->
+    <record id="rule_l10n_ca_qc_rl1_slip_company" model="ir.rule">
+        <field name="name">RL-1 Slip: multi-company</field>
+        <field name="model_id" ref="model_l10n_ca_qc_rl1_slip"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- ======================== RL-1 Summary ======================== -->
+    <record id="rule_l10n_ca_qc_rl1_summary_company" model="ir.rule">
+        <field name="name">RL-1 Summary: multi-company</field>
+        <field name="model_id" ref="model_l10n_ca_qc_rl1_summary"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- ======================== RL-2 Slip ======================== -->
+    <record id="rule_l10n_ca_qc_rl2_slip_company" model="ir.rule">
+        <field name="name">RL-2 Slip: multi-company</field>
+        <field name="model_id" ref="model_l10n_ca_qc_rl2_slip"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- ======================== RL-2 Summary ======================== -->
+    <record id="rule_l10n_ca_qc_rl2_summary_company" model="ir.rule">
+        <field name="name">RL-2 Summary: multi-company</field>
+        <field name="model_id" ref="model_l10n_ca_qc_rl2_summary"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- ======================== ROE ======================== -->
+    <record id="rule_l10n_ca_qc_roe_company" model="ir.rule">
+        <field name="name">ROE: multi-company</field>
+        <field name="model_id" ref="model_l10n_ca_qc_roe"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- ======================== ROE Earnings Line ======================== -->
+    <record id="rule_l10n_ca_qc_roe_earnings_line_company" model="ir.rule">
+        <field name="name">ROE Earnings Line: multi-company</field>
+        <field name="model_id" ref="model_l10n_ca_qc_roe_earnings_line"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('roe_id.company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- ======================== T4 Slip ======================== -->
+    <record id="rule_l10n_ca_qc_t4_slip_company" model="ir.rule">
+        <field name="name">T4 Slip: multi-company</field>
+        <field name="model_id" ref="model_l10n_ca_qc_t4_slip"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- ======================== T4 Summary ======================== -->
+    <record id="rule_l10n_ca_qc_t4_summary_company" model="ir.rule">
+        <field name="name">T4 Summary: multi-company</field>
+        <field name="model_id" ref="model_l10n_ca_qc_t4_summary"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- ======================== Vacation Accrual ======================== -->
+    <record id="rule_l10n_ca_qc_vacation_accrual_company" model="ir.rule">
+        <field name="name">Vacation Accrual: multi-company</field>
+        <field name="model_id" ref="model_l10n_ca_qc_vacation_accrual"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- ======================== Garnishment ======================== -->
+    <record id="rule_l10n_ca_qc_garnishment_company" model="ir.rule">
+        <field name="name">Garnishment: multi-company</field>
+        <field name="model_id" ref="model_l10n_ca_qc_garnishment"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <!-- ======================== Remittance Report ======================== -->
+    <record id="rule_l10n_ca_qc_remittance_report_company" model="ir.rule">
+        <field name="name">Remittance Report: multi-company</field>
+        <field name="model_id" ref="model_l10n_ca_qc_remittance_report"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+</odoo>

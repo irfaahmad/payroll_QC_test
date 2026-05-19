@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+
+    <!-- ======================== hr.version — Quebec Payroll Settings ========================
+         These fields are stored on hr.version (the contract/payroll version record).
+         They are used directly by salary rules and are accessible via the list+form views
+         below, which appear under Payroll Configuration → Quebec Contract Settings.
+    ======================== -->
+
+    <record id="view_l10n_ca_qc_hr_version_form" model="ir.ui.view">
+        <field name="name">hr.version.form.qc</field>
+        <field name="model">hr.version</field>
+        <field name="arch" type="xml">
+            <form string="Quebec Contract / Payroll Settings">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group string="Employee &amp; Period">
+                        <group>
+                            <field name="employee_id" readonly="1"/>
+                            <field name="date_start" readonly="1"/>
+                            <field name="date_end" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Pay Frequency">
+                        <group>
+                            <field name="l10n_ca_qc_pay_frequency"/>
+                            <field name="l10n_ca_qc_pay_periods"/>
+                        </group>
+                    </group>
+                    <group string="Tax Claim Codes">
+                        <group>
+                            <field name="l10n_ca_qc_td1_claim_code"
+                                   string="Federal TD1 Claim Code"/>
+                            <field name="l10n_ca_qc_tp1015_claim_code"
+                                   string="Quebec TP-1015.3 Claim Code"/>
+                        </group>
+                        <group>
+                            <field name="l10n_ca_qc_additional_fed_tax"/>
+                            <field name="l10n_ca_qc_additional_prov_tax"/>
+                        </group>
+                    </group>
+                    <group string="Exemptions">
+                        <group>
+                            <field name="l10n_ca_qc_qpp_exempt"/>
+                            <field name="l10n_ca_qc_ei_exempt"/>
+                            <field name="l10n_ca_qc_qpip_exempt"/>
+                        </group>
+                    </group>
+                    <group string="CNESST (Workers&#39; Compensation)">
+                        <group>
+                            <field name="l10n_ca_qc_cnesst_classification"/>
+                            <field name="l10n_ca_qc_cnesst_rate"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_l10n_ca_qc_hr_version_list" model="ir.ui.view">
+        <field name="name">hr.version.list.qc</field>
+        <field name="model">hr.version</field>
+        <field name="arch" type="xml">
+            <list string="Quebec Contract / Payroll Settings">
+                <field name="employee_id"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="l10n_ca_qc_pay_frequency"/>
+                <field name="l10n_ca_qc_td1_claim_code" string="TD1"/>
+                <field name="l10n_ca_qc_tp1015_claim_code" string="TP-1015.3"/>
+                <field name="l10n_ca_qc_qpp_exempt" string="QPP Exempt"/>
+                <field name="l10n_ca_qc_ei_exempt" string="EI Exempt"/>
+                <field name="l10n_ca_qc_qpip_exempt" string="QPIP Exempt"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_l10n_ca_qc_hr_version" model="ir.actions.act_window">
+        <field name="name">Quebec Contract Settings</field>
+        <field name="res_model">hr.version</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('view_l10n_ca_qc_hr_version_list')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('view_l10n_ca_qc_hr_version_form')}),
+        ]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No contract versions found. Contract versions are created automatically
+                when an employee contract is set up.
+            </p>
+        </field>
+    </record>
+
+</odoo>
+

@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <!-- ======================== QPP Parameters (2026) ======================== -->
+    <record id="rule_parameter_qc_qpp_employee_rate" model="hr.rule.parameter">
+        <field name="name">Quebec - QPP Employee Rate</field>
+        <field name="code">l10n_ca_qc_qpp_employee_rate</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_qpp_employee_rate_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_qpp_employee_rate"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">0.063</field>
+    </record>
+
+    <record id="rule_parameter_qc_qpp_ympe" model="hr.rule.parameter">
+        <field name="name">Quebec - QPP YMPE</field>
+        <field name="code">l10n_ca_qc_qpp_ympe</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_qpp_ympe_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_qpp_ympe"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">74600</field>
+    </record>
+
+    <record id="rule_parameter_qc_qpp_basic_exemption" model="hr.rule.parameter">
+        <field name="name">Quebec - QPP Basic Exemption</field>
+        <field name="code">l10n_ca_qc_qpp_basic_exemption</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_qpp_basic_exemption_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_qpp_basic_exemption"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">3500</field>
+    </record>
+
+    <record id="rule_parameter_qc_qpp_max_contribution" model="hr.rule.parameter">
+        <field name="name">Quebec - QPP Max Employee Contribution</field>
+        <field name="code">l10n_ca_qc_qpp_max_contribution</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_qpp_max_contribution_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_qpp_max_contribution"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">4479.30</field>
+    </record>
+
+    <!-- ======================== QPP2 Parameters (2026) ======================== -->
+    <record id="rule_parameter_qc_qpp2_rate" model="hr.rule.parameter">
+        <field name="name">Quebec - QPP2 Rate</field>
+        <field name="code">l10n_ca_qc_qpp2_rate</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_qpp2_rate_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_qpp2_rate"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">0.04</field>
+    </record>
+
+    <record id="rule_parameter_qc_qpp2_ceiling" model="hr.rule.parameter">
+        <field name="name">Quebec - QPP2 Ceiling (YAMPE)</field>
+        <field name="code">l10n_ca_qc_qpp2_ceiling</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_qpp2_ceiling_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_qpp2_ceiling"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">85000</field>
+    </record>
+
+    <record id="rule_parameter_qc_qpp2_max_contribution" model="hr.rule.parameter">
+        <field name="name">Quebec - QPP2 Max Employee Contribution</field>
+        <field name="code">l10n_ca_qc_qpp2_max_contribution</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_qpp2_max_contribution_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_qpp2_max_contribution"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">416.00</field>
+    </record>
+
+    <!-- ======================== QPIP Parameters (2026) ======================== -->
+    <record id="rule_parameter_qc_qpip_employee_rate" model="hr.rule.parameter">
+        <field name="name">Quebec - QPIP Employee Rate</field>
+        <field name="code">l10n_ca_qc_qpip_employee_rate</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_qpip_employee_rate_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_qpip_employee_rate"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">0.00430</field>
+    </record>
+
+    <record id="rule_parameter_qc_qpip_employer_rate" model="hr.rule.parameter">
+        <field name="name">Quebec - QPIP Employer Rate</field>
+        <field name="code">l10n_ca_qc_qpip_employer_rate</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_qpip_employer_rate_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_qpip_employer_rate"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">0.00602</field>
+    </record>
+
+    <record id="rule_parameter_qc_qpip_max_insurable" model="hr.rule.parameter">
+        <field name="name">Quebec - QPIP Max Insurable Earnings</field>
+        <field name="code">l10n_ca_qc_qpip_max_insurable</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_qpip_max_insurable_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_qpip_max_insurable"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">103000</field>
+    </record>
+
+    <record id="rule_parameter_qc_qpip_max_ee_premium" model="hr.rule.parameter">
+        <field name="name">Quebec - QPIP Max Employee Premium</field>
+        <field name="code">l10n_ca_qc_qpip_max_ee_premium</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_qpip_max_ee_premium_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_qpip_max_ee_premium"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">442.90</field>
+    </record>
+
+    <record id="rule_parameter_qc_qpip_max_er_premium" model="hr.rule.parameter">
+        <field name="name">Quebec - QPIP Max Employer Premium</field>
+        <field name="code">l10n_ca_qc_qpip_max_er_premium</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_qpip_max_er_premium_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_qpip_max_er_premium"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">620.06</field>
+    </record>
+
+    <!-- ======================== EI Quebec Reduced Rate (2026) ======================== -->
+    <record id="rule_parameter_qc_ei_employee_rate" model="hr.rule.parameter">
+        <field name="name">Quebec - EI Employee Rate (Reduced)</field>
+        <field name="code">l10n_ca_qc_ei_employee_rate</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_ei_employee_rate_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_ei_employee_rate"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">0.0130</field>
+    </record>
+
+    <record id="rule_parameter_qc_ei_max_insurable" model="hr.rule.parameter">
+        <field name="name">Quebec - EI Max Insurable Earnings</field>
+        <field name="code">l10n_ca_qc_ei_max_insurable</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_ei_max_insurable_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_ei_max_insurable"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">68900</field>
+    </record>
+
+    <record id="rule_parameter_qc_ei_max_premium" model="hr.rule.parameter">
+        <field name="name">Quebec - EI Max Employee Premium</field>
+        <field name="code">l10n_ca_qc_ei_max_premium</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_ei_max_premium_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_ei_max_premium"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">895.70</field>
+    </record>
+
+    <record id="rule_parameter_qc_ei_employer_multiplier" model="hr.rule.parameter">
+        <field name="name">Quebec - EI Employer Multiplier</field>
+        <field name="code">l10n_ca_qc_ei_employer_multiplier</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_ei_employer_multiplier_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_ei_employer_multiplier"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">1.4</field>
+    </record>
+
+    <!-- ======================== Federal Tax (2026) ======================== -->
+    <record id="rule_parameter_qc_fed_bracket_1" model="hr.rule.parameter">
+        <field name="name">Quebec - Federal Bracket 1</field>
+        <field name="code">l10n_ca_qc_fed_bracket_1</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_fed_bracket_1_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_fed_bracket_1"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">58523</field>
+    </record>
+    <record id="rule_parameter_qc_fed_rate_1" model="hr.rule.parameter">
+        <field name="name">Quebec - Federal Rate 1</field>
+        <field name="code">l10n_ca_qc_fed_rate_1</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_fed_rate_1_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_fed_rate_1"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">0.14</field>
+    </record>
+    <record id="rule_parameter_qc_fed_bracket_2" model="hr.rule.parameter">
+        <field name="name">Quebec - Federal Bracket 2</field>
+        <field name="code">l10n_ca_qc_fed_bracket_2</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_fed_bracket_2_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_fed_bracket_2"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">117045</field>
+    </record>
+    <record id="rule_parameter_qc_fed_rate_2" model="hr.rule.parameter">
+        <field name="name">Quebec - Federal Rate 2</field>
+        <field name="code">l10n_ca_qc_fed_rate_2</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_fed_rate_2_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_fed_rate_2"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">0.205</field>
+    </record>
+    <record id="rule_parameter_qc_fed_bracket_3" model="hr.rule.parameter">
+        <field name="name">Quebec - Federal Bracket 3</field>
+        <field name="code">l10n_ca_qc_fed_bracket_3</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_fed_bracket_3_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_fed_bracket_3"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">181440</field>
+    </record>
+    <record id="rule_parameter_qc_fed_rate_3" model="hr.rule.parameter">
+        <field name="name">Quebec - Federal Rate 3</field>
+        <field name="code">l10n_ca_qc_fed_rate_3</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_fed_rate_3_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_fed_rate_3"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">0.26</field>
+    </record>
+    <record id="rule_parameter_qc_fed_bracket_4" model="hr.rule.parameter">
+        <field name="name">Quebec - Federal Bracket 4</field>
+        <field name="code">l10n_ca_qc_fed_bracket_4</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_fed_bracket_4_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_fed_bracket_4"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">258482</field>
+    </record>
+    <record id="rule_parameter_qc_fed_rate_4" model="hr.rule.parameter">
+        <field name="name">Quebec - Federal Rate 4</field>
+        <field name="code">l10n_ca_qc_fed_rate_4</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_fed_rate_4_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_fed_rate_4"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">0.29</field>
+    </record>
+    <record id="rule_parameter_qc_fed_rate_5" model="hr.rule.parameter">
+        <field name="name">Quebec - Federal Rate 5 (Top)</field>
+        <field name="code">l10n_ca_qc_fed_rate_5</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_fed_rate_5_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_fed_rate_5"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">0.33</field>
+    </record>
+    <record id="rule_parameter_qc_fed_basic_personal_amount" model="hr.rule.parameter">
+        <field name="name">Quebec - Federal BPA Max</field>
+        <field name="code">l10n_ca_qc_fed_basic_personal_amount</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_fed_basic_personal_amount_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_fed_basic_personal_amount"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">16452</field>
+    </record>
+    <record id="rule_parameter_qc_fed_bpa_min" model="hr.rule.parameter">
+        <field name="name">Quebec - Federal BPA Min</field>
+        <field name="code">l10n_ca_qc_fed_bpa_min</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_fed_bpa_min_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_fed_bpa_min"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">14829</field>
+    </record>
+
+    <!-- ======================== Quebec Provincial Tax (2026) ======================== -->
+    <record id="rule_parameter_qc_prov_bracket_1" model="hr.rule.parameter">
+        <field name="name">Quebec - Provincial Bracket 1</field>
+        <field name="code">l10n_ca_qc_prov_bracket_1</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_prov_bracket_1_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_prov_bracket_1"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">54345</field>
+    </record>
+    <record id="rule_parameter_qc_prov_rate_1" model="hr.rule.parameter">
+        <field name="name">Quebec - Provincial Rate 1</field>
+        <field name="code">l10n_ca_qc_prov_rate_1</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_prov_rate_1_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_prov_rate_1"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">0.14</field>
+    </record>
+    <record id="rule_parameter_qc_prov_bracket_2" model="hr.rule.parameter">
+        <field name="name">Quebec - Provincial Bracket 2</field>
+        <field name="code">l10n_ca_qc_prov_bracket_2</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_prov_bracket_2_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_prov_bracket_2"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">108680</field>
+    </record>
+    <record id="rule_parameter_qc_prov_rate_2" model="hr.rule.parameter">
+        <field name="name">Quebec - Provincial Rate 2</field>
+        <field name="code">l10n_ca_qc_prov_rate_2</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_prov_rate_2_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_prov_rate_2"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">0.19</field>
+    </record>
+    <record id="rule_parameter_qc_prov_bracket_3" model="hr.rule.parameter">
+        <field name="name">Quebec - Provincial Bracket 3</field>
+        <field name="code">l10n_ca_qc_prov_bracket_3</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_prov_bracket_3_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_prov_bracket_3"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">132245</field>
+    </record>
+    <record id="rule_parameter_qc_prov_rate_3" model="hr.rule.parameter">
+        <field name="name">Quebec - Provincial Rate 3</field>
+        <field name="code">l10n_ca_qc_prov_rate_3</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_prov_rate_3_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_prov_rate_3"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">0.24</field>
+    </record>
+    <record id="rule_parameter_qc_prov_rate_4" model="hr.rule.parameter">
+        <field name="name">Quebec - Provincial Rate 4 (Top)</field>
+        <field name="code">l10n_ca_qc_prov_rate_4</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_prov_rate_4_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_prov_rate_4"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">0.2575</field>
+    </record>
+    <record id="rule_parameter_qc_prov_basic_personal_amount" model="hr.rule.parameter">
+        <field name="name">Quebec - Provincial BPA</field>
+        <field name="code">l10n_ca_qc_prov_basic_personal_amount</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_prov_basic_personal_amount_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_prov_basic_personal_amount"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">18952</field>
+    </record>
+
+    <!-- ======================== CNESST Rate (2026) ======================== -->
+    <record id="rule_parameter_qc_cnesst_rate" model="hr.rule.parameter">
+        <field name="name">Quebec - CNESST Default Rate</field>
+        <field name="code">l10n_ca_qc_cnesst_rate</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_cnesst_rate_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_cnesst_rate"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">0.0165</field>
+    </record>
+
+    <!-- ======================== HSF Rate (2026) ======================== -->
+    <record id="rule_parameter_qc_hsf_rate" model="hr.rule.parameter">
+        <field name="name">Quebec - HSF Rate (Fonds des services de santé)</field>
+        <field name="code">l10n_ca_qc_hsf_rate</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_hsf_rate_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_hsf_rate"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">0.0165</field>
+    </record>
+
+    <!-- ======================== CNT Rate (2026) ======================== -->
+    <record id="rule_parameter_qc_cnt_rate" model="hr.rule.parameter">
+        <field name="name">Quebec - CNT Rate (Labour Standards)</field>
+        <field name="code">l10n_ca_qc_cnt_rate</field>
+        <field name="country_id" ref="base.ca"/>
+    </record>
+    <record id="rule_parameter_qc_cnt_rate_2026" model="hr.rule.parameter.value">
+        <field name="rule_parameter_id" ref="rule_parameter_qc_cnt_rate"/>
+        <field name="date_from">2026-01-01</field>
+        <field name="parameter_value">0.0007</field>
+    </record>
+
+</odoo>

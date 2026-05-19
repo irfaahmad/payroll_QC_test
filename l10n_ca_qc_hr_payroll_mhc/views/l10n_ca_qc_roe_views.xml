@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+
+    <!-- ROE Form View -->
+    <record id="l10n_ca_qc_roe_form_view" model="ir.ui.view">
+        <field name="name">l10n_ca_qc.roe.form</field>
+        <field name="model">l10n_ca_qc.roe</field>
+        <field name="arch" type="xml">
+            <form string="Record of Employment">
+                <header>
+                    <button name="action_generate"
+                            string="Generate"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_submit"
+                            string="Submit"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'generated'"/>
+                    <button name="action_export_xml"
+                            string="Export XML (ROE Web)"
+                            type="object"
+                            invisible="state == 'draft'"/>
+                    <button name="action_cancel"
+                            string="Cancel"
+                            type="object"
+                            invisible="state in ('cancelled', 'draft')"/>
+                    <button name="action_reset_to_draft"
+                            string="Reset to Draft"
+                            type="object"
+                            invisible="state not in ('cancelled', 'generated')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,generated,submitted"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Employer / Employee">
+                            <field name="employee_id"/>
+                            <field name="company_id"/>
+                            <field name="serial_number"/>
+                            <field name="reason_code"/>
+                            <field name="reason_description"/>
+                            <field name="pay_period_type"/>
+                        </group>
+                        <group string="Dates">
+                            <field name="first_day_worked"/>
+                            <field name="last_day_paid"/>
+                            <field name="final_pay_period_end"/>
+                            <field name="expected_recall_date"/>
+                        </group>
+                    </group>
+                    <group string="Earnings &amp; Hours">
+                        <group>
+                            <field name="total_insurable_hours"/>
+                            <field name="total_insurable_earnings"/>
+                        </group>
+                        <group>
+                            <field name="vacation_pay"/>
+                            <field name="other_monies"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Earnings by Period (Block 17)" name="earnings_lines">
+                            <field name="insurable_earnings_line_ids">
+                                <list editable="bottom">
+                                    <field name="period_number"/>
+                                    <field name="insurable_earnings"/>
+                                    <field name="insurable_hours"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ROE Tree/List View -->
+    <record id="l10n_ca_qc_roe_tree_view" model="ir.ui.view">
+        <field name="name">l10n_ca_qc.roe.tree</field>
+        <field name="model">l10n_ca_qc.roe</field>
+        <field name="arch" type="xml">
+            <list string="Records of Employment">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="last_day_paid"/>
+                <field name="reason_code"/>
+                <field name="total_insurable_earnings"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-warning="state == 'generated'"
+                       decoration-success="state == 'submitted'"
+                       decoration-danger="state == 'cancelled'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ROE Window Action -->
+    <record id="action_l10n_ca_qc_roe" model="ir.actions.act_window">
+        <field name="name">Records of Employment (ROE)</field>
+        <field name="res_model">l10n_ca_qc.roe</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('l10n_ca_qc_roe_tree_view')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('l10n_ca_qc_roe_form_view')}),
+        ]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No ROEs found. Create a new one!
+            </p>
+        </field>
+    </record>
+
+</odoo>

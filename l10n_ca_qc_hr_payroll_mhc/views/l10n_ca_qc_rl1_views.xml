@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+
+    <!-- RL-1 Slip Form View -->
+    <record id="l10n_ca_qc_rl1_slip_form_view" model="ir.ui.view">
+        <field name="name">l10n_ca_qc.rl1.slip.form</field>
+        <field name="model">l10n_ca_qc.rl1.slip</field>
+        <field name="arch" type="xml">
+            <form string="RL-1 Slip">
+                <header>
+                    <button name="action_generate"
+                            string="Generate"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_submit"
+                            string="Submit"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'generated'"/>
+                    <button name="action_cancel"
+                            string="Cancel"
+                            type="object"
+                            invisible="state in ('cancelled', 'draft')"/>
+                    <button name="action_reset_to_draft"
+                            string="Reset to Draft"
+                            type="object"
+                            invisible="state not in ('cancelled', 'generated')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,generated,submitted"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="General Information">
+                            <field name="employee_id"/>
+                            <field name="company_id"/>
+                            <field name="year"/>
+                        </group>
+                    </group>
+                    <group string="RL-1 Boxes">
+                        <group>
+                            <field name="box_a"/>
+                            <field name="box_b"/>
+                            <field name="box_c"/>
+                            <field name="box_d"/>
+                            <field name="box_e"/>
+                            <field name="box_g"/>
+                        </group>
+                        <group>
+                            <field name="box_h"/>
+                            <field name="box_i"/>
+                            <field name="box_j"/>
+                            <field name="box_l"/>
+                            <field name="box_o_code"/>
+                            <field name="box_o_amount"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- RL-1 Slip Tree/List View -->
+    <record id="l10n_ca_qc_rl1_slip_tree_view" model="ir.ui.view">
+        <field name="name">l10n_ca_qc.rl1.slip.tree</field>
+        <field name="model">l10n_ca_qc.rl1.slip</field>
+        <field name="arch" type="xml">
+            <list string="RL-1 Slips">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="year"/>
+                <field name="box_a" string="Box A — Employment Income"/>
+                <field name="box_e" string="Box E — QC Tax"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-warning="state == 'generated'"
+                       decoration-success="state == 'submitted'"
+                       decoration-danger="state == 'cancelled'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- RL-1 Slip Window Action -->
+    <record id="action_l10n_ca_qc_rl1_slip" model="ir.actions.act_window">
+        <field name="name">RL-1 Slips</field>
+        <field name="res_model">l10n_ca_qc.rl1.slip</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('l10n_ca_qc_rl1_slip_tree_view')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('l10n_ca_qc_rl1_slip_form_view')}),
+        ]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No RL-1 slips found. Create a new one!
+            </p>
+        </field>
+    </record>
+
+</odoo>

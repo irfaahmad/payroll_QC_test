@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <record id="view_l10n_ca_qc_rl1_wizard_form" model="ir.ui.view">
+        <field name="name">l10n_ca_qc.rl1.wizard.form</field>
+        <field name="model">l10n_ca_qc.rl1.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate RL-1 Slips">
+                <group>
+                    <field name="year"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </group>
+                <footer>
+                    <button name="action_generate" string="Generate RL-1 Slips" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_l10n_ca_qc_rl1_wizard" model="ir.actions.act_window">
+        <field name="name">Generate RL-1 Slips</field>
+        <field name="res_model">l10n_ca_qc.rl1.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

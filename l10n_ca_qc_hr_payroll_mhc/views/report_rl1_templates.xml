@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+
+    <!-- RL-1 Slip QWeb Report Template -->
+    <template id="report_rl1_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="slip">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="text-center">Relevé 1 — RL-1 Slip</h2>
+                        <h3 class="text-center">Tax Year: <t t-esc="slip.year"/></h3>
+                        <hr/>
+
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <strong>Employer:</strong>
+                                <p>
+                                    <t t-esc="slip.company_id.name"/><br/>
+                                    <t t-if="slip.company_id.street">
+                                        <t t-esc="slip.company_id.street"/><br/>
+                                    </t>
+                                    <t t-if="slip.company_id.city">
+                                        <t t-esc="slip.company_id.city"/>,
+                                    </t>
+                                    <t t-if="slip.company_id.state_id">
+                                        <t t-esc="slip.company_id.state_id.code"/>
+                                    </t>
+                                    <t t-if="slip.company_id.zip">
+                                        <t t-esc="slip.company_id.zip"/>
+                                    </t>
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <strong>Employee:</strong>
+                                <p>
+                                    <t t-esc="slip.employee_id.name"/><br/>
+                                    <t t-if="slip.employee_id.l10n_ca_qc_sin">
+                                        SIN: ***-***-<t t-esc="slip.employee_id.l10n_ca_qc_sin[-3:]"/>
+                                    </t>
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr/>
+                        <h4>RL-1 Boxes</h4>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Box</th>
+                                    <th>Description</th>
+                                    <th class="text-right">Amount ($)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>A</strong></td>
+                                    <td>Employment Income</td>
+                                    <td class="text-right">
+                                        <t t-esc="'%.2f' % slip.box_a"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>B</strong></td>
+                                    <td>QPP Contributions</td>
+                                    <td class="text-right">
+                                        <t t-esc="'%.2f' % slip.box_b"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>C</strong></td>
+                                    <td>EI Premiums</td>
+                                    <td class="text-right">
+                                        <t t-esc="'%.2f' % slip.box_c"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>D</strong></td>
+                                    <td>RPP Contributions</td>
+                                    <td class="text-right">
+                                        <t t-esc="'%.2f' % slip.box_d"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>E</strong></td>
+                                    <td>Quebec Income Tax Withheld</td>
+                                    <td class="text-right">
+                                        <t t-esc="'%.2f' % slip.box_e"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>G</strong></td>
+                                    <td>Union Dues</td>
+                                    <td class="text-right">
+                                        <t t-esc="'%.2f' % slip.box_g"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>H</strong></td>
+                                    <td>QPIP Premiums</td>
+                                    <td class="text-right">
+                                        <t t-esc="'%.2f' % slip.box_h"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>I</strong></td>
+                                    <td>Commissions</td>
+                                    <td class="text-right">
+                                        <t t-esc="'%.2f' % slip.box_i"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>J</strong></td>
+                                    <td>Net Federal Supplements</td>
+                                    <td class="text-right">
+                                        <t t-esc="'%.2f' % slip.box_j"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>L</strong></td>
+                                    <td>Other Taxable Benefits</td>
+                                    <td class="text-right">
+                                        <t t-esc="'%.2f' % slip.box_l"/>
+                                    </td>
+                                </tr>
+                                <tr t-if="slip.box_o_amount">
+                                    <td><strong>O (<t t-esc="slip.box_o_code or ''"/>)</strong></td>
+                                    <td>Other Income</td>
+                                    <td class="text-right">
+                                        <t t-esc="'%.2f' % slip.box_o_amount"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="row mt-4">
+                            <div class="col-12 text-right">
+                                <p><small>Reference: <t t-esc="slip.name"/> | Status: <t t-esc="slip.state"/></small></p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- RL-1 Slip Report Action -->
+    <record id="action_report_rl1_slip" model="ir.actions.report">
+        <field name="name">RL-1 Slip</field>
+        <field name="model">l10n_ca_qc.rl1.slip</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_ca_qc_hr_payroll_mhc.report_rl1_document</field>
+        <field name="report_file">l10n_ca_qc_hr_payroll_mhc.report_rl1_document</field>
+        <field name="binding_model_id" ref="model_l10n_ca_qc_rl1_slip"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

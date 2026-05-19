@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <record id="hr_employee_view_form_qc" model="ir.ui.view">
+        <field name="name">hr.employee.form.qc</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Quebec Payroll" name="l10n_ca_qc_payroll"
+                      invisible="country_code != 'CA'">
+                    <group string="Quebec Payroll Information">
+                        <group>
+                            <field name="l10n_ca_qc_sin"
+                                   placeholder="e.g. 123 456 789"/>
+                            <field name="l10n_ca_qc_tp1015_claim_code"/>
+                        </group>
+                    </group>
+                    <group string="Vacation Pay Accrual">
+                        <field name="l10n_ca_qc_vacation_accrual_ids"
+                               groups="hr_payroll.group_hr_payroll_user">
+                            <list editable="bottom">
+                                <field name="accrual_rate"/>
+                                <field name="years_of_service"/>
+                                <field name="accrued_amount"/>
+                                <field name="taken_amount"/>
+                                <field name="balance"/>
+                                <field name="last_updated"/>
+                            </list>
+                        </field>
+                    </group>
+                    <group string="Garnishments &amp; Court Orders">
+                        <field name="l10n_ca_qc_garnishment_ids"
+                               groups="hr_payroll.group_hr_payroll_user">
+                            <list editable="bottom">
+                                <field name="garnishment_type"/>
+                                <field name="description"/>
+                                <field name="is_percentage"/>
+                                <field name="percentage"
+                                       invisible="not is_percentage"/>
+                                <field name="amount"
+                                       invisible="is_percentage"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="active"/>
+                            </list>
+                        </field>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
+

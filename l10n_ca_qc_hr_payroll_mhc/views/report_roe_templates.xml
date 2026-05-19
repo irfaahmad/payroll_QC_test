@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+
+    <!-- ROE QWeb Report Template -->
+    <template id="report_roe_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="roe">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2 class="text-center">Record of Employment (ROE)</h2>
+                        <hr/>
+
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <strong>Employer (Block 3):</strong>
+                                <p>
+                                    <t t-esc="roe.company_id.name"/><br/>
+                                    <t t-if="roe.company_id.street">
+                                        <t t-esc="roe.company_id.street"/><br/>
+                                    </t>
+                                    <t t-if="roe.company_id.city">
+                                        <t t-esc="roe.company_id.city"/>,
+                                    </t>
+                                    <t t-if="roe.company_id.state_id">
+                                        <t t-esc="roe.company_id.state_id.code"/>
+                                    </t>
+                                    <t t-if="roe.company_id.zip">
+                                        <t t-esc="roe.company_id.zip"/>
+                                    </t>
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <strong>Employee (Block 7):</strong>
+                                <p>
+                                    <t t-esc="roe.employee_id.name"/><br/>
+                                    <t t-if="roe.employee_id.l10n_ca_qc_sin">
+                                        SIN (Block 8): ***-***-<t t-esc="roe.employee_id.l10n_ca_qc_sin[-3:]"/>
+                                    </t>
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr/>
+                        <h4>ROE Blocks</h4>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td><strong>Serial Number</strong></td>
+                                    <td><t t-esc="roe.serial_number or '—'"/></td>
+                                    <td><strong>Pay Period Type</strong></td>
+                                    <td><t t-esc="dict(roe._fields['pay_period_type'].selection).get(roe.pay_period_type, '—')"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Block 9 — First Day Worked</strong></td>
+                                    <td><t t-esc="roe.first_day_worked or '—'"/></td>
+                                    <td><strong>Block 10 — Last Day Paid</strong></td>
+                                    <td><t t-esc="roe.last_day_paid or '—'"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Block 11 — Final Pay Period End</strong></td>
+                                    <td><t t-esc="roe.final_pay_period_end or '—'"/></td>
+                                    <td><strong>Block 14 — Expected Recall Date</strong></td>
+                                    <td><t t-esc="roe.expected_recall_date or '—'"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Block 12 — Total Insurable Hours</strong></td>
+                                    <td><t t-esc="'%.2f' % roe.total_insurable_hours"/></td>
+                                    <td><strong>Block 13 — Total Insurable Earnings</strong></td>
+                                    <td><t t-esc="'%.2f' % roe.total_insurable_earnings"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Block 15A — Vacation Pay</strong></td>
+                                    <td><t t-esc="'%.2f' % roe.vacation_pay"/></td>
+                                    <td><strong>Block 15B — Other Monies</strong></td>
+                                    <td><t t-esc="'%.2f' % roe.other_monies"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Block 16 — Reason Code</strong></td>
+                                    <td>
+                                        <t t-esc="dict(roe._fields['reason_code'].selection).get(roe.reason_code, '—')"/>
+                                        <t t-if="roe.reason_description">
+                                            — <t t-esc="roe.reason_description"/>
+                                        </t>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <t t-if="roe.insurable_earnings_line_ids">
+                            <h4 class="mt-4">Block 17 — Insurable Earnings by Period</h4>
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Period #</th>
+                                        <th class="text-right">Insurable Earnings ($)</th>
+                                        <th class="text-right">Insurable Hours</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="roe.insurable_earnings_line_ids" t-as="line">
+                                        <tr>
+                                            <td><t t-esc="line.period_number"/></td>
+                                            <td class="text-right">
+                                                <t t-esc="'%.2f' % line.insurable_earnings"/>
+                                            </td>
+                                            <td class="text-right">
+                                                <t t-esc="'%.2f' % line.insurable_hours"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+
+                        <div class="row mt-4">
+                            <div class="col-12 text-right">
+                                <p><small>Reference: <t t-esc="roe.name"/> | Status: <t t-esc="roe.state"/></small></p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- ROE Report Action -->
+    <record id="action_report_roe" model="ir.actions.report">
+        <field name="name">Record of Employment</field>
+        <field name="model">l10n_ca_qc.roe</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_ca_qc_hr_payroll_mhc.report_roe_document</field>
+        <field name="report_file">l10n_ca_qc_hr_payroll_mhc.report_roe_document</field>
+        <field name="binding_model_id" ref="model_l10n_ca_qc_roe"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

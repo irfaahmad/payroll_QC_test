@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <template id="report_payslip_qc_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-if="o.struct_id.country_id.code == 'CA'">                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <!-- Header -->
+                            <div class="row mb-4">
+                                <div class="col-6">
+                                    <h4>Pay Slip</h4>
+                                    <p>
+                                        <strong>Employee:</strong>
+                                        <t t-esc="o.employee_id.name"/>
+                                    </p>
+                                    <p t-if="o.employee_id.l10n_ca_qc_sin">
+                                        <strong>SIN:</strong>
+                                        XXX XXX <t t-esc="o.employee_id.l10n_ca_qc_sin[-3:]"/>
+                                    </p>
+                                    <p>
+                                        <strong>Province:</strong> Quebec
+                                    </p>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <p>
+                                        <strong>Pay Period:</strong>
+                                        <t t-esc="o.date_from"/> – <t t-esc="o.date_to"/>
+                                    </p>
+                                    <p>
+                                        <strong>Structure:</strong>
+                                        <t t-esc="o.struct_id.name"/>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Earnings -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5>Earnings</h5>
+                                    <table class="table table-sm table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Description</th>
+                                                <th class="text-right">Amount (CAD)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="o.line_ids.filtered(lambda l: l.category_id.code in ('ALW', 'GROSS') and l.appears_on_payslip)" t-as="line">
+                                                <tr>
+                                                    <td><t t-esc="line.name"/></td>
+                                                    <td class="text-right">
+                                                        <t t-esc="'{:,.2f}'.format(line.total)"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Deductions -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5>Deductions</h5>
+                                    <table class="table table-sm table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Description</th>
+                                                <th class="text-right">Amount (CAD)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="o.line_ids.filtered(lambda l: l.category_id.code in ('QPP', 'QPIP', 'EI_QC', 'FED_TAX_QC', 'PROV_TAX_QC', 'DED') and l.appears_on_payslip)" t-as="line">
+                                                <tr>
+                                                    <td><t t-esc="line.name"/></td>
+                                                    <td class="text-right">
+                                                        <t t-esc="'{:,.2f}'.format(abs(line.total))"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Net Pay -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table table-sm table-bordered">
+                                        <tbody>
+                                            <t t-foreach="o.line_ids.filtered(lambda l: l.code == 'NET_QC')" t-as="line">
+                                                <tr class="font-weight-bold">
+                                                    <td><strong>Net Pay</strong></td>
+                                                    <td class="text-right">
+                                                        <strong>
+                                                            <t t-esc="'{:,.2f}'.format(line.total)"/>
+                                                            CAD
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Employer Contributions -->
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <h5>Employer Contributions</h5>
+                                    <table class="table table-sm table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Description</th>
+                                                <th class="text-right">Amount (CAD)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="o.line_ids.filtered(lambda l: l.category_id.code == 'EMPLOYER_QC' and l.appears_on_payslip)" t-as="line">
+                                                <tr>
+                                                    <td><t t-esc="line.name"/></td>
+                                                    <td class="text-right">
+                                                        <t t-esc="'{:,.2f}'.format(line.total)"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- Pay Slip (English) Report Action -->
+    <record id="action_report_payslip_qc" model="ir.actions.report">
+        <field name="name">Pay Slip (Quebec)</field>
+        <field name="model">hr.payslip</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_ca_qc_hr_payroll_mhc.report_payslip_qc_document</field>
+        <field name="report_file">l10n_ca_qc_hr_payroll_mhc.report_payslip_qc_document</field>
+        <field name="binding_model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>
