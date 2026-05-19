@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <record id="view_company_form_ca_payroll_eft" model="ir.ui.view">
+        <field name="name">res.company.form.ca.payroll.eft</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Canadian Payroll EFT" name="l10n_ca_payroll_eft">
+                    <group>
+                        <group string="Originator Profile">
+                            <field name="l10n_ca_eft_bank_format"/>
+                            <field name="l10n_ca_eft_originator_id"/>
+                            <field name="l10n_ca_eft_short_name"/>
+                            <field name="l10n_ca_eft_long_name"/>
+                            <field name="l10n_ca_eft_currency"/>
+                        </group>
+                        <group string="Bank Routing">
+                            <field name="l10n_ca_eft_originator_inst"/>
+                            <field name="l10n_ca_eft_originator_transit"/>
+                            <field name="l10n_ca_eft_originator_account"/>
+                            <field name="l10n_ca_eft_data_centre"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Posting and Sequence">
+                            <field name="l10n_ca_eft_file_counter"/>
+                            <field name="l10n_ca_eft_bank_journal_id"/>
+                            <field name="l10n_ca_eft_clearing_account_id"/>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

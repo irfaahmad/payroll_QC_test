@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <record id="hr_employee_view_form_ca_payroll_eft" model="ir.ui.view">
+        <field name="name">hr.employee.form.ca.payroll.eft</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="l10n_ca_hr_payroll_except_QC.hr_employee_view_form_ca_payroll"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='l10n_ca_payroll_settings']" position="inside">
+                <group string="Canadian Bank Info (EFT)">
+                    <field name="l10n_ca_pay_method"/>
+                    <field name="l10n_ca_bank_institution" invisible="l10n_ca_pay_method != 'eft'"/>
+                    <field name="l10n_ca_bank_transit" invisible="l10n_ca_pay_method != 'eft'"/>
+                    <field name="l10n_ca_bank_account" invisible="l10n_ca_pay_method != 'eft'"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

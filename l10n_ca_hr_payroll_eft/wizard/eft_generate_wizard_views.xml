@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Wizard form -->
+    <record id="view_l10n_ca_eft_wizard_form" model="ir.ui.view">
+        <field name="name">l10n.ca.eft.wizard.form</field>
+        <field name="model">l10n.ca.eft.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate EFT File (CPA Standard 005)">
+                <group>
+                    <field name="payslip_run_id" options="{'no_create': True}"/>
+                    <field name="settlement_date"/>
+                    <field name="mark_paid"/>
+                    <field name="create_payment"/>
+                </group>
+                <footer>
+                    <button name="action_generate" type="object"
+                            string="Generate" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Standalone action that opens the wizard with an empty pay run picker -->
+    <record id="action_l10n_ca_eft_wizard" model="ir.actions.act_window">
+        <field name="name">Generate EFT File</field>
+        <field name="res_model">l10n.ca.eft.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Top-level menu under Payroll -->
+    <menuitem id="menu_l10n_ca_eft_generate"
+              name="Generate EFT File"
+              parent="hr_work_entry_enterprise.menu_hr_payroll_root"
+              action="action_l10n_ca_eft_wizard"
+              sequence="90"/>
+</odoo>

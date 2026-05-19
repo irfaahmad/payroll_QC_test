@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The enterprise module hr_payroll_account sets the context flag
+    hr_payroll_payment_register=True on the Pay button.  That flag is
+    consumed by account.payment._get_valid_payment_account_types to widen
+    the Register Payment wizard so it also picks up liability_current
+    accounts (designed for single-account payroll).
+
+    Our Canadian chart routes net pay to a dedicated liability_payable
+    account (2390 Employee Wages Payable), while every CRA / EHT / RRSP /
+    Union deduction lands on its own liability_current account.  When the
+    widened scope is active the wizard pulls those credit lines in along
+    with the per-employee 2390 line and aborts with:
+
+        You can't register payments for both inbound and outbound moves
+        at the same time.
+
+    Stripping the flag restores the standard wizard scope
+    (asset_receivable + liability_payable) so only the 2390 line is
+    offered, which is exactly the per-employee net pay.
+-->
+<odoo>
+    <record id="view_hr_payslip_form_inherit_ca" model="ir.ui.view">
+        <field name="name">hr.payslip.form.inherit.ca</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll_account.hr_payslip_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_register_payment']" position="attributes">
+                <attribute name="context">{'dont_redirect_to_payments': True}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

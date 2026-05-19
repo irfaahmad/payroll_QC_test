@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo noupdate="0">
+
+    <record id="salary_rule_ca_wcb_er" model="hr.salary.rule">
+        <field name="name">WCB / CNESST (Employer)</field>
+        <field name="code">WCB_ER</field>
+        <field name="sequence">210</field>
+        <field name="category_id" ref="hr_salary_rule_category_ca_employer"/>
+        <field name="struct_id" ref="hr_payroll_structure_ca_employee_salary"/>
+        <field name="appears_on_payslip" eval="True"/>
+        <field name="account_debit"  ref="account_5444"/>
+        <field name="account_credit" ref="account_2354"/>
+
+        <field name="condition_select">python</field>
+        <field name="condition_python">
+# Salary-rule eval has no `env` and `version` is sometimes False; reach
+# Odoo via payslip.env and use payslip.version_id for the contract.
+ver = payslip.version_id
+state = (
+    (employee.work_contact_id and employee.work_contact_id.state_id)
+    or employee.sudo().private_state_id
+)
+result = (
+    ver
+    and not ver.l10n_ca_wcb_exempt
+    and state
+    and state.code in (
+        'AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU',
+        'ON', 'PE', 'QC', 'SK', 'YT'
+    )
+)
+        </field>
+
+        <field name="amount_select">code</field>
+        <field name="amount_python_compute">
+ver = payslip.version_id
+state = (
+    (employee.work_contact_id and employee.work_contact_id.state_id)
+    or employee.sudo().private_state_id
+)
+province = state.code
+rate_rec = payslip.env['l10n.ca.wcb.rate'].sudo().get_current_rate(
+    company=ver.company_id,
+    province=province,
+    date=payslip.date_to,
+)
+if not rate_rec:
+    result = 0.0
+else:
+    gross = result_rules.get('GROSS', {}).get('total', 0)
+    periods = payslip._l10n_ca_periods_per_year()
+    period_ceiling = (
+        rate_rec.max_assessable_earnings / periods
+        if periods else rate_rec.max_assessable_earnings
+    )
+    capped = min(gross, period_ceiling)
+    result = round(capped * (rate_rec.employer_rate / 100.0), 2)
+        </field>
+    </record>
+
+</odoo>

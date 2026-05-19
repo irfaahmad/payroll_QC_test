@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Part of MHC. See LICENSE file for full copyright and licensing details. -->
+<odoo noupdate="1">
+    <record id="seq_l10n_ca_eft_file" model="ir.sequence">
+        <field name="name">Canadian Payroll EFT File</field>
+        <field name="code">l10n.ca.eft.file</field>
+        <field name="padding">4</field>
+        <field name="number_next">1</field>
+        <field name="number_increment">1</field>
+        <field name="implementation">no_gap</field>
+    </record>
+</odoo>
